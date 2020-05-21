@@ -1,0 +1,24 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "servidor de declaragua",
+  "main": "index.js",
+  "scripts": {
+    "test": "dev"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Eduardo-rico/declaragua.git"
+  },
+  "keywords": [
+    "node",
+    "express",
+    "mongo"
+  ],
+  "author": "Eduardo-rico",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Eduardo-rico/declaragua/issues"
+  },
+  "homepage": "https://github.com/Eduardo-rico/declaragua#readme"
+}
