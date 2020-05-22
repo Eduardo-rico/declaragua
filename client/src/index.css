@@ -11,3 +11,28 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+#root {
+  padding: 20px;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+}
+
+.registro {
+  display: block;
+  border: 1px solid red;
+  padding: 50px;
+  max-width: 500px;
+}
+.registro > div {
+  padding: 1em;
+  justify-content: center;
+}
+.registro > div > input {
+  padding: 1em;
+  border: none;
+  border-bottom: 1px dashed peru;
+}
