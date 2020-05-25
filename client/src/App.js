@@ -1,6 +1,7 @@
-import React, { useState, Fragment } from 'react';
+import React, { useState } from 'react';
 import Formulario from './components/Formulario';
 import Registro from './components/Registro';
+import Inicio from './components/Inicio';
 import {
   Container,
   Grid,
@@ -42,7 +43,7 @@ const useStyles = makeStyles({
     color: '#999',
     fontStyle: 'italic',
     fontWeight: '100',
-    fontSize: '1rem'
+    fontSize: '0.6rem'
   },
   divSlogan: {
     display: 'flex',
@@ -66,10 +67,12 @@ function App() {
 
   const [start, saveStart] = useState(true);
 
+  const [inicio, guardarInicio] = useState(false);
+
   if (contador >= preguntas.length) return <h1>Gracias por participar</h1>;
 
   return (
-    <Fragment className={classes.frag}>
+    <div className={classes.frag}>
       <AppBar position='static'>
         <Toolbar>
           <Button>
@@ -80,29 +83,33 @@ function App() {
           </span>
         </Toolbar>
       </AppBar>
-      <Container maxWidth='sm' className='container'>
-        <Paper elevation={3} className={classes.paper}>
-          {start ? (
-            <Grid container justify='center'>
-              <Registro
-                saveStart={saveStart}
-                guardarIdUsuario={guardarIdUsuario}
-              />
-            </Grid>
-          ) : (
-            <Grid container justify='center'>
-              <Formulario
-                guardarRespuesta={guardarRespuesta}
-                respuesta={respuesta}
-                pregunta={preguntas[contador]}
-                guardarContador={guardarContador}
-                contador={contador}
-                idUsuario={idUsuario}
-              />
-            </Grid>
-          )}
-        </Paper>
-      </Container>
+      {inicio ? (
+        <Container maxWidth='sm' className='container'>
+          <Paper elevation={3} className={classes.paper}>
+            {start ? (
+              <Grid container justify='center'>
+                <Registro
+                  saveStart={saveStart}
+                  guardarIdUsuario={guardarIdUsuario}
+                />
+              </Grid>
+            ) : (
+              <Grid container justify='center'>
+                <Formulario
+                  guardarRespuesta={guardarRespuesta}
+                  respuesta={respuesta}
+                  pregunta={preguntas[contador]}
+                  guardarContador={guardarContador}
+                  contador={contador}
+                  idUsuario={idUsuario}
+                />
+              </Grid>
+            )}
+          </Paper>
+        </Container>
+      ) : (
+        <Inicio guardarInicio={guardarInicio} />
+      )}
       <div className={classes.divSlogan}>
         <span className={classes.slogan}>
           Una aplicación de{' '}
@@ -115,7 +122,7 @@ function App() {
           2020 ©
         </span>
       </div>
-    </Fragment>
+    </div>
   );
 }
 

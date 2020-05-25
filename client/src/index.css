@@ -10,6 +10,7 @@ body {
   background-repeat: no-repeat;
   background-position-x: -10rem;
   background-position-y: 2.1rem;
+  min-height: 500px;
 }
 
 code {
