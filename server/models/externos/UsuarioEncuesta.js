@@ -6,6 +6,7 @@ const UsuarioEncuesta = new Schema({
   nombre: { type: String },
   telefono: { type: String },
   estado: { type: String },
+  municipio: { type: String },
   respuestas: [{ type: mongoose.Types.ObjectId, ref: 'respuestas' }]
 });
 

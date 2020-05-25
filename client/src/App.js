@@ -1,19 +1,63 @@
-import React, { useState } from 'react';
+import React, { useState, Fragment } from 'react';
 import Formulario from './components/Formulario';
 import Registro from './components/Registro';
+import {
+  Container,
+  Grid,
+  Paper,
+  AppBar,
+  Toolbar,
+  Button
+} from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
+import Logo from './logo.svg';
+
+const useStyles = makeStyles({
+  paper: {
+    paddingBottom: '1.5rem',
+    paddingTop: '1.5rem'
+  },
+  imagen: {
+    maxHeight: '50px',
+    padding: '2px'
+  },
+  frag: {
+    justifyContent: 'center'
+  },
+  letterc: {
+    fontFamily: 'Montserrat',
+    fontWeight: 'bold',
+    fontSize: '2.5rem',
+    color: 'white',
+    paddingLeft: '1.5rem'
+  },
+  span: {
+    fontFamily: 'Montserrat',
+    fontWeight: '400',
+    fontSize: '2rem',
+    color: 'white'
+  },
+  slogan: {
+    fontFamily: 'Montserrat',
+    color: '#999',
+    fontStyle: 'italic',
+    fontWeight: '100',
+    fontSize: '1rem'
+  },
+  divSlogan: {
+    display: 'flex',
+    justifyContent: 'center',
+    paddingTop: '1.5rem'
+  },
+  aSlogan: {
+    textDecoration: 'none'
+  }
+});
 
 function App() {
-  const preguntas = [
-    'De que estado nos visitas',
-    'Te gusta la conagua?',
-    'cual es tu correo',
-    'cuanto estarrías dispuesto a pagar tanto por algo?',
-    'cuanto es 2+2',
-    'Eres fan de lopez-gatell?',
-    'A ella le gusta la gasolina',
-    'Sabes a chocolate?',
-    'Hablas de canciones de los dosmiless'
-  ];
+  const classes = useStyles();
+
+  const preguntas = ['De que estado nos visitas', 'Te gusta la conagua?'];
 
   const [respuesta, guardarRespuesta] = useState('');
   const [contador, guardarContador] = useState(0);
@@ -25,20 +69,53 @@ function App() {
   if (contador >= preguntas.length) return <h1>Gracias por participar</h1>;
 
   return (
-    <div className='container'>
-      {start ? (
-        <Registro saveStart={saveStart} guardarIdUsuario={guardarIdUsuario} />
-      ) : (
-        <Formulario
-          guardarRespuesta={guardarRespuesta}
-          respuesta={respuesta}
-          pregunta={preguntas[contador]}
-          guardarContador={guardarContador}
-          contador={contador}
-          idUsuario={idUsuario}
-        />
-      )}
-    </div>
+    <Fragment className={classes.frag}>
+      <AppBar position='static'>
+        <Toolbar>
+          <Button>
+            <img src={Logo} alt='Logo' className={classes.imagen} />
+          </Button>
+          <span className={classes.letterc}>
+            D<span className={classes.span}>eclaragua</span>
+          </span>
+        </Toolbar>
+      </AppBar>
+      <Container maxWidth='sm' className='container'>
+        <Paper elevation={3} className={classes.paper}>
+          {start ? (
+            <Grid container justify='center'>
+              <Registro
+                saveStart={saveStart}
+                guardarIdUsuario={guardarIdUsuario}
+              />
+            </Grid>
+          ) : (
+            <Grid container justify='center'>
+              <Formulario
+                guardarRespuesta={guardarRespuesta}
+                respuesta={respuesta}
+                pregunta={preguntas[contador]}
+                guardarContador={guardarContador}
+                contador={contador}
+                idUsuario={idUsuario}
+              />
+            </Grid>
+          )}
+        </Paper>
+      </Container>
+      <div className={classes.divSlogan}>
+        <span className={classes.slogan}>
+          Una aplicación de{' '}
+          <a
+            href='http://www.tramitesconagua.com/ '
+            className={classes.aSlogan}
+          >
+            www.tramitesconagua.com
+          </a>{' '}
+          2020 ©
+        </span>
+      </div>
+    </Fragment>
   );
 }
 

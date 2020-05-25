@@ -5,6 +5,11 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  display: block;
+  background-image: url('./hero_employee_.svg');
+  background-repeat: no-repeat;
+  background-position-x: -10rem;
+  background-position-y: 2.1rem;
 }
 
 code {
@@ -12,27 +17,18 @@ code {
     monospace;
 }
 
-#root {
-  padding: 20px;
-}
-
 .container {
-  display: flex;
-  justify-content: center;
+  margin-top: 25vw;
 }
 
-.registro {
-  display: block;
-  border: 1px solid red;
-  padding: 50px;
-  max-width: 500px;
+@media screen and (min-width: 600px) {
+  .container {
+    margin-top: 150px;
+  }
 }
-.registro > div {
-  padding: 1em;
-  justify-content: center;
-}
-.registro > div > input {
-  padding: 1em;
-  border: none;
-  border-bottom: 1px dashed peru;
+
+@media screen and (min-width: 1000px) {
+  .container {
+    margin-top: 200px;
+  }
 }

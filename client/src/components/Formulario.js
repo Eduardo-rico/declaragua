@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import { Button, TextField } from '@material-ui/core';
 
 const Formulario = ({
   guardarRespuesta,
@@ -31,10 +32,12 @@ const Formulario = ({
   };
 
   return (
-    <form onSubmit={enviar}>
+    <form onSubmit={enviar} className='formulario'>
       <label>{pregunta} </label>
-      <input name='pregunta 1' type='text' onChange={cambio} />
-      <input type='submit' value='Submit' />
+      <TextField name='pregunta' type='text' onChange={cambio} />
+      <Button color='primary' variant='contained' fullWidth>
+        Siguiente pregunta!
+      </Button>
     </form>
   );
 };
