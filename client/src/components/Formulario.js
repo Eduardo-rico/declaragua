@@ -1,6 +1,14 @@
 import React from 'react';
 import axios from 'axios';
-import { Button, TextField } from '@material-ui/core';
+import { Button, TextField, Grid } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
+
+const estilos = makeStyles({
+  preg: {
+    justifyContent: 'center',
+    display: 'flex'
+  }
+});
 
 const Formulario = ({
   guardarRespuesta,
@@ -20,7 +28,7 @@ const Formulario = ({
 
     const response = await axios({
       method: 'post',
-      url: 'http://localhost:5256/agregarRespuesta',
+      url: 'https://declarap.herokuapp.com/agregarRespuesta',
       data: {
         pregunta: pregunta,
         respuesta: respuesta,
@@ -31,13 +39,30 @@ const Formulario = ({
     console.log(response);
   };
 
+  const clases = estilos();
+
   return (
     <form onSubmit={enviar} className='formulario'>
-      <label>{pregunta} </label>
-      <TextField name='pregunta' type='text' onChange={cambio} />
-      <Button color='primary' variant='contained' fullWidth>
-        Siguiente pregunta!
-      </Button>
+      <Grid container spacing={4} justify='center'>
+        <Grid item sm={12}>
+          <Grid item sm={12}>
+            <label className={clases.preg}>{pregunta} </label>
+          </Grid>
+          <Grid item sm={12}>
+            <TextField
+              name='pregunta'
+              type='text'
+              onChange={cambio}
+              className={clases.preg}
+            />
+          </Grid>
+        </Grid>
+        <Grid item sm={12}>
+          <Button color='primary' variant='contained' fullWidth>
+            Siguiente pregunta!
+          </Button>
+        </Grid>
+      </Grid>
     </form>
   );
 };

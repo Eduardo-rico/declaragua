@@ -77,7 +77,7 @@ const Registro = ({ saveStart, guardarIdUsuario }) => {
             onChange={formulario}
           />
         </Grid>
-        <Grid item justify='center'>
+        <Grid item>
           <Button type='submit' color='primary' variant='contained'>
             Empezar encuesta
           </Button>
