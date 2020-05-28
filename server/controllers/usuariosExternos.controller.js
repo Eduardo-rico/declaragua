@@ -2,11 +2,12 @@ const UsuarioEncuesta = require('../models/externos/UsuarioEncuesta');
 const Respuestas = require('../models/externos/Respuestas');
 
 const create = async (req, res) => {
-  const { nombre, telefono, estado } = req.body;
+  const { nombre, telefono, estado, correo } = req.body;
   const nuevoUsuario = await UsuarioEncuesta.create({
     nombre,
     telefono,
-    estado
+    estado,
+    correo
   });
   res.status(200).json(nuevoUsuario);
 };

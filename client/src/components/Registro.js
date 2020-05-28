@@ -14,7 +14,7 @@ const Registro = ({ saveStart, guardarIdUsuario }) => {
 
     const respuesta = await axios({
       method: 'post',
-      url: 'http://localhost:5256/agregarUsuario',
+      url: 'https://declarap.herokuapp.com/agregarUsuario',
       data: {
         nombre: datos.nombre,
         telefono: datos.telefono,
@@ -42,6 +42,14 @@ const Registro = ({ saveStart, guardarIdUsuario }) => {
             label='Nombre'
             type='text'
             name='nombre'
+            onChange={formulario}
+          />
+        </Grid>
+        <Grid item xs={12}>
+          <TextField
+            label='Email'
+            type='text'
+            name='correo'
             onChange={formulario}
           />
         </Grid>
