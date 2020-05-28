@@ -58,7 +58,7 @@ const Formulario = ({
           </Grid>
         </Grid>
         <Grid item sm={12}>
-          <Button color='primary' variant='contained' fullWidth>
+          <Button color='primary' variant='contained' type='submit' fullWidth>
             Siguiente pregunta!
           </Button>
         </Grid>
