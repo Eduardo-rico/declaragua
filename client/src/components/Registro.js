@@ -52,7 +52,7 @@ const Registro = ({ saveStart, guardarIdUsuario }) => {
         <Grid item xs={12}>
           <TextField
             label='Email'
-            type='text'
+            type='email'
             name='correo'
             required
             onChange={formulario}
