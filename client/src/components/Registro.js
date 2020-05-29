@@ -54,6 +54,7 @@ const Registro = ({ saveStart, guardarIdUsuario }) => {
             label='Email'
             type='text'
             name='correo'
+            required
             onChange={formulario}
           />
         </Grid>
