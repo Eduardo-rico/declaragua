@@ -45,7 +45,7 @@ const Inicio = ({ guardarInicio }) => {
             <div className={clases.pregunta}>
               <p className={clases.parrafo}>
                 Obten 20% de descuento en tu proxima declaración trimestral de
-                conagua contestando esta sencilla encuesta!
+                Conagua contestando esta sencilla encuesta!
               </p>
               <FormControlLabel
                 control={<Checkbox color='primary' onChange={aceptar} />}

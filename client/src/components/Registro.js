@@ -10,7 +10,9 @@ const Registro = ({ saveStart, guardarIdUsuario }) => {
 
   const registro = async (e) => {
     e.preventDefault();
-    if (Object.keys(datos).length === 0) return null;
+
+    // console.log(datos);
+    // console.log(Object.values(datos));
 
     const respuesta = await axios({
       method: 'post',
@@ -19,7 +21,8 @@ const Registro = ({ saveStart, guardarIdUsuario }) => {
         nombre: datos.nombre,
         telefono: datos.telefono,
         estado: datos.estado,
-        municipio: datos.municipio
+        municipio: datos.municipio,
+        correo: datos.correo
       }
     });
     guardarIdUsuario(respuesta.data._id.toString());
@@ -42,6 +45,7 @@ const Registro = ({ saveStart, guardarIdUsuario }) => {
             label='Nombre'
             type='text'
             name='nombre'
+            required
             onChange={formulario}
           />
         </Grid>
@@ -55,8 +59,9 @@ const Registro = ({ saveStart, guardarIdUsuario }) => {
         </Grid>
         <Grid item>
           <TextField
-            label='Telefono o Email'
+            label='Telefono'
             type='text'
+            required
             name='telefono'
             onChange={formulario}
           />
@@ -65,6 +70,7 @@ const Registro = ({ saveStart, guardarIdUsuario }) => {
           <TextField
             label='Estado'
             type='text'
+            required
             name='estado'
             onChange={formulario}
           />
@@ -73,6 +79,7 @@ const Registro = ({ saveStart, guardarIdUsuario }) => {
           <TextField
             label='Municipio'
             type='text'
+            required
             name='municipio'
             onChange={formulario}
           />

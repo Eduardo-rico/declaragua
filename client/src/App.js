@@ -58,7 +58,80 @@ const useStyles = makeStyles({
 function App() {
   const classes = useStyles();
 
-  const preguntas = ['De que estado nos visitas', 'Te gusta la conagua?'];
+  //preguntas
+  /**
+   * [
+    {
+      preguntaCuestionario: '¿Qúe trámites requieres hacer en la Conagua?',
+      respuestaCuestionario: [
+        'Prorroga',
+        'Transmisión de derechos',
+        'Modificaciones',
+        'Permisos de descargas',
+        'Ocupacion de zona federal',
+        'Otros'
+      ]
+    },
+    {
+      preguntaCuestionario:
+        '¿Qué te impide ir directamente a la Conagua a realizar tus trámites?',
+      respuestaCuestionario: [
+        'Distancia',
+        'No conozco el procedimiento',
+        'Me quita mucho tiempo',
+        'Otro'
+      ]
+    },
+    {
+      preguntaCuestionario:
+        'Sabías que tienes que hacer cada trimestre una declaración para efectos fiscales y otra para efectos administrativos?',
+      respuestaCuestionario: ['Sí', 'No']
+    },
+    {
+      preguntaCuestionario:
+        '¿Requieres ayuda para hacer tus declaraciones trimestrales?',
+      respuestaCuestionario: ['Sí', 'No']
+    }
+  ]
+   */
+
+  const preguntas = [
+    {
+      preguntaCuestionario: '¿Qué trámites requieres hacer en la Conagua?',
+      respuestaCuestionario: [
+        'Prorroga',
+        'Transmisión de derechos',
+        'Modificaciones',
+        'Permisos de descargas',
+        'Ocupacion de zona federal',
+        'Otros'
+      ],
+      key: '1'
+    },
+    {
+      preguntaCuestionario:
+        'Sabías que tienes que hacer cada trimestre una declaración para efectos fiscales y otra para efectos administrativos?',
+      respuestaCuestionario: ['Sí', 'No'],
+      key: '2'
+    },
+    {
+      preguntaCuestionario:
+        '¿Qué te impide ir directamente a la Conagua a realizar tus trámites?',
+      respuestaCuestionario: [
+        'Distancia',
+        'No conozco el procedimiento',
+        'Me quita mucho tiempo',
+        'Otro'
+      ],
+      key: '3'
+    },
+    {
+      preguntaCuestionario:
+        '¿Requieres ayuda para hacer tus declaraciones trimestrales?',
+      respuestaCuestionario: ['Sí', 'No'],
+      key: '4'
+    }
+  ];
 
   const [respuesta, guardarRespuesta] = useState('');
   const [contador, guardarContador] = useState(0);
