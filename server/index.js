@@ -31,5 +31,6 @@ app.use(cors());
 //rutas
 
 app.use('/', usuarioRouter);
+app.use('/plataforma', usuarioRouter);
 
 //listen
