@@ -7,6 +7,7 @@ require('dotenv').config();
 
 //Dependencias internas
 const usuarioRouter = require('./routes/usuariosExternos.routes');
+const usuarioInternosRouter = require('./routes/usuariosInternos.routes');
 
 //inicializaciones
 mongoose.connect(
@@ -31,6 +32,6 @@ app.use(cors());
 //rutas
 
 app.use('/', usuarioRouter);
-app.use('/plataforma', usuarioRouter);
+app.use('/plataforma', usuarioInternosRouter);
 
 //listen

@@ -1,19 +1,102 @@
-const login = (req, res) => {
+const Cliente = require('../models/internos/cliente.model');
+const Usuario = require('../models/internos/usuario.model');
+
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+require('dotenv').config();
+
+const login = async (req, res) => {
   //TODO:
   //1.- verificar que el usuario existe
   //2.- si existe hacer un jwt con un payload llamado usuario con un _id = usuario._id de mongo
+  const { email, password } = req.body;
+  const usuarioEncontrado = await Usuario.findOne({ email });
+  if (!email || !usuarioEncontrado) {
+    res.status(404).json({ Error: 'Usuario no encontrado' });
+  }
+
+  const compararPassword = await bcrypt.compare(
+    password,
+    usuarioEncontrado.password
+  );
+
+  if (compararPassword) {
+    const token = jwt.sign({ usuarioEncontrado }, process.env.SECRETO, {
+      expiresIn: '24h'
+    });
+    res.status(200).json({
+      Mensaje: 'Bienvenido, ahi va el token',
+      token
+    });
+  } else {
+    res.status(500).json({ Error: 'Password Invalido' });
+  }
 };
-const nuevoUsuario = (req, res) => {
+
+const nuevoUsuario = async (req, res) => {
   //TODO crear un usuario en la db
+  const { nombre, email, password } = req.body;
+  if (!nombre || !email || !password) {
+    res
+      .status(500)
+      .json({ Error: 'Nombre, email y password son oblicatorios' });
+  }
+  const passwordEncriptado = await bcrypt.hash(password, 10);
+  const nuevoUsuario = await Usuario.create({
+    nombre,
+    email,
+    password: passwordEncriptado
+  });
+
+  if (nuevoUsuario) {
+    res.status(200).json({ Mensaje: 'Usuario creado correctamente' });
+  } else {
+    res.status(500).json({ Error: 'Error al crear el usuario' });
+  }
 };
-const mostrarClientes = (req, res) => {
+
+const mostrarClientes = async (req, res) => {
   //TODO busca los clientes cuando el id del usuario es igual al creadoPor del cliente
+  //lo sacas el auth como: usuarioId
+  const { usuarioId } = req;
+  if (!usuarioId) {
+    res.status(404).json({ Error: 'Error en el usuario' });
+  }
+
+  const clientesDeUsuarios = await Cliente.find({ creadoPor: usuarioId });
+  if (!clientesDeUsuarios) {
+    res.status(404).json({ Mensaje: 'No tienes ningun usuario' });
+  }
+  // console.log(clientesDeUsuarios);
+  res.status(200).json({ Mensaje: clientesDeUsuarios });
 };
-const mostrarCliente = (req, res) => {
+
+const mostrarCliente = async (req, res) => {
   //TODO busca los clientes cuando el id del usuario es igual al creadoPor del cliente y el id del cliente es igual al que viene el req.props.clienteId
+  const { clienteId } = req.params;
+  const { usuarioId } = req;
+  if (!clienteId) {
+    res.status(404).json({ Error: 'Error en el cliente' });
+  }
+  const clienteDeUsuario = await Cliente.findById({
+    _id: clienteId,
+    creadoPor: usuarioId
+  });
+  if (!clienteDeUsuario) {
+    res.status(404).json({ Mensaje: 'No tienes ningun usuario' });
+  }
+  // console.log(clienteDeUsuario);
+  res.status(200).json({ Mensaje: clienteDeUsuario });
 };
-const agregarCliente = (req, res) => {
+const agregarCliente = async (req, res) => {
   //TODO crear un cliente en la db cuando el usuario esta autenticado, con el payload del jwt se crea req.usuarioId y esto se guarda en el cliente nuevo como creadoPor: req.usuarioId
+  const { nombre } = req.body;
+  const { usuarioId } = req;
+  const nuevoCliente = await Cliente.create({ creadoPor: usuarioId, nombre });
+  if (!nombre) {
+    res.status(404).json({ Mensaje: 'No nombre del cliente' });
+  }
+  res.status(200).json(nuevoCliente);
 };
 const modificarCliente = (req, res) => {
   //TODO busca los clientes cuando el id del usuario es igual al creadoPor del cliente y el id del cliente es igual al que viene el req.props.clienteId

@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
 
+const auth = require('../helpers/autenticar');
+
 const {
   login,
   nuevoUsuario,
@@ -9,15 +11,15 @@ const {
   agregarCliente,
   modificarCliente,
   eliminarCliente
-} = require('../controllers/');
+} = require('../controllers/usuariosInternos.controller');
 
 router.post('/login', login).post('/nuevoUsuario', nuevoUsuario);
 
-router.route('/usuario').get(mostrarClientes);
-router.route('/usuarios/:clienteId').get(mostrarCliente);
-router.route('/usuarios/nuevo-cliente').post(agregarCliente);
-router.route('/usuarios/:clienteId').put(modificarCliente);
-router.route('/usuarios/:clienteId').delete(eliminarCliente);
+router.route('/usuarios').get(auth, mostrarClientes);
+router.route('/usuarios/:clienteId').get(auth, mostrarCliente);
+router.route('/usuarios/nuevo').post(auth, agregarCliente);
+router.route('/usuarios/:clienteId').put(auth, modificarCliente);
+router.route('/usuarios/:clienteId').delete(auth, eliminarCliente);
 
 /**
  * put, patch, delete, get usr/id
