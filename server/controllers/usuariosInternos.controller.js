@@ -63,11 +63,12 @@ const mostrarClientes = async (req, res) => {
     res.status(404).json({ Error: 'Error en el usuario' });
   }
 
-  const clientesDeUsuarios = await Cliente.find({ creadoPor: usuarioId });
+  const clientesDeUsuarios = await Cliente.find({
+    creadoPor: usuarioId
+  }); //.populate('creadoPor');
   if (!clientesDeUsuarios) {
-    res.status(404).json({ Mensaje: 'No tienes ningun usuario' });
+    res.status(404).json({ Error: 'No tienes ningun usuario' });
   }
-  // console.log(clientesDeUsuarios);
   res.status(200).json({ Mensaje: clientesDeUsuarios });
 };
 
@@ -78,32 +79,85 @@ const mostrarCliente = async (req, res) => {
   if (!clienteId) {
     res.status(404).json({ Error: 'Error en el cliente' });
   }
-  const clienteDeUsuario = await Cliente.findById({
-    _id: clienteId,
-    creadoPor: usuarioId
-  });
-  if (!clienteDeUsuario) {
-    res.status(404).json({ Mensaje: 'No tienes ningun usuario' });
+  try {
+    const clienteDeUsuario = await Cliente.findById({
+      _id: clienteId,
+      creadoPor: usuarioId
+    });
+    if (!clienteDeUsuario) {
+      res
+        .status(404)
+        .json({ Error: 'Error al mostrar el usuario, usuario no encontrado' });
+    } else {
+      res.status(200).json({ Mensaje: clienteDeUsuario });
+    }
+  } catch (error) {
+    res
+      .status(404)
+      .json({ Error: 'Error al mostrar el usuario, usuario no encontrado' });
   }
-  // console.log(clienteDeUsuario);
-  res.status(200).json({ Mensaje: clienteDeUsuario });
 };
 const agregarCliente = async (req, res) => {
   //TODO crear un cliente en la db cuando el usuario esta autenticado, con el payload del jwt se crea req.usuarioId y esto se guarda en el cliente nuevo como creadoPor: req.usuarioId
   const { nombre } = req.body;
   const { usuarioId } = req;
-  const nuevoCliente = await Cliente.create({ creadoPor: usuarioId, nombre });
-  if (!nombre) {
-    res.status(404).json({ Mensaje: 'No nombre del cliente' });
+  try {
+    const nuevoCliente = await Cliente.create({ creadoPor: usuarioId, nombre });
+    if (!nombre) {
+      res.status(404).json({ Error: 'No nombre del cliente' });
+    } else {
+      res.status(200).json(nuevoCliente);
+    }
+  } catch (error) {
+    res
+      .status(500)
+      .json({ Error: 'No se creo el cliente', error: error.message });
   }
-  res.status(200).json(nuevoCliente);
 };
-const modificarCliente = (req, res) => {
+const modificarCliente = async (req, res) => {
   //TODO busca los clientes cuando el id del usuario es igual al creadoPor del cliente y el id del cliente es igual al que viene el req.props.clienteId
   //cambia por lo menos el nombre
+  const { nombre } = req.body;
+  const { clienteId } = req.params;
+  const { usuarioId } = req;
+  if (!nombre) {
+    res.status(404).json({ Error: 'No nombre del cliente' });
+  }
+  try {
+    const clienteCambiado = await Cliente.findOneAndUpdate(
+      { _id: clienteId, creadoPor: usuarioId },
+      { nombre },
+      { new: true }
+    );
+    if (!clienteCambiado) {
+      res.status(404).json({ Error: 'Usuario no modificado' });
+    } else {
+      res.status(200).json({ clienteCambiado });
+    }
+  } catch (error) {
+    res.status(500).json({ Error: 'Usuario no modificado', error });
+  }
 };
-const eliminarCliente = (req, res) => {
+
+const eliminarCliente = async (req, res) => {
   //TODO busca los clientes cuando el id del usuario es igual al creadoPor del cliente y el id del cliente es igual al que viene el req.props.clienteId y lo elimina/desactiva(para mantener datos historicos)
+  const { clienteId } = req.params;
+  const { usuarioId } = req;
+  if (!clienteId || !usuarioId) {
+    res.status(404).json({ Error: 'Error al eliminar el cliente' });
+  }
+  try {
+    const clienteEliminado = await Cliente.findOneAndDelete({
+      _id: clienteId,
+      creadoPor: usuarioId
+    });
+    if (!clienteEliminado) {
+      res.status(404).json({ Error: 'Usuario no eliminado' });
+    }
+    res.status(200).json({ Mensaje: 'Usuario eliminado' });
+  } catch (error) {
+    res.status(500).json({ Error: 'Usuario no eliminado', error });
+  }
 };
 
 module.exports = {
