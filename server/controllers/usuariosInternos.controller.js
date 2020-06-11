@@ -106,7 +106,11 @@ const agregarCliente = async (req, res) => {
     if (!nombre) {
       res.status(404).json({ Error: 'No nombre del cliente' });
     } else {
-      res.status(200).json(nuevoCliente);
+      await Usuario.findByIdAndUpdate(
+        { _id: usuarioId },
+        { $push: { clientes: nuevoCliente } }
+      ); //.populate('clientes'); SE MODIFICA EL USUARIO PARA MOSTRAR ARRAY DE CLIENTES
+      res.status(200).json({ nuevoCliente });
     }
   } catch (error) {
     res
