@@ -13,23 +13,23 @@ const login = async (req, res) => {
   const usuarioEncontrado = await Usuario.findOne({ email });
   if (!email || !usuarioEncontrado) {
     res.status(404).json({ Error: 'Usuario no encontrado' });
-  }
-
-  const compararPassword = await bcrypt.compare(
-    password,
-    usuarioEncontrado.password
-  );
-
-  if (compararPassword) {
-    const token = jwt.sign({ usuarioEncontrado }, process.env.SECRETO, {
-      expiresIn: '24h'
-    });
-    res.status(200).json({
-      Mensaje: 'Bienvenido, ahi va el token',
-      token
-    });
   } else {
-    res.status(500).json({ Error: 'Password Invalido' });
+    const compararPassword = await bcrypt.compare(
+      password,
+      usuarioEncontrado.password
+    );
+
+    if (compararPassword) {
+      const token = jwt.sign({ usuarioEncontrado }, process.env.SECRETO, {
+        expiresIn: '24h'
+      });
+      res.status(202).json({
+        Mensaje: 'Bienvenido, ahi va el token',
+        token
+      });
+    } else {
+      res.status(400).json({ Error: 'Password Invalido' });
+    }
   }
 };
 
@@ -38,20 +38,21 @@ const nuevoUsuario = async (req, res) => {
   const { nombre, email, password } = req.body;
   if (!nombre || !email || !password) {
     res
-      .status(500)
+      .status(400)
       .json({ Error: 'Nombre, email y password son oblicatorios' });
-  }
-  const passwordEncriptado = await bcrypt.hash(password, 10);
-  const nuevoUsuario = await Usuario.create({
-    nombre,
-    email,
-    password: passwordEncriptado
-  });
-
-  if (nuevoUsuario) {
-    res.status(200).json({ Mensaje: 'Usuario creado correctamente' });
   } else {
-    res.status(500).json({ Error: 'Error al crear el usuario' });
+    const passwordEncriptado = await bcrypt.hash(password, 10);
+    const nuevoUsuario = await Usuario.create({
+      nombre,
+      email,
+      password: passwordEncriptado
+    });
+
+    if (nuevoUsuario) {
+      res.status(201).json({ Mensaje: 'Usuario creado correctamente' });
+    } else {
+      res.status(500).json({ Error: 'Error al crear el usuario' });
+    }
   }
 };
 
