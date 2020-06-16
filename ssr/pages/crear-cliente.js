@@ -37,7 +37,49 @@ const CrearCliente = () => {
   return (
     <div>
       <form onSubmit={enviarCliente}>
-        <input type='text' name='nombre' onChange={guardarCliente} />
+        <input
+          type='text'
+          name='nombre'
+          placeholder='nombre'
+          onChange={guardarCliente}
+        />
+        <input
+          type='text'
+          name='rfc'
+          placeholder='rfc'
+          onChange={guardarCliente}
+        />
+        <input type='date' name='fechaMaxima' onChange={guardarCliente} />
+        <input
+          type='text'
+          name='nombreConagua'
+          placeholder='Nombre de conagua:'
+          onChange={guardarCliente}
+        />
+        <input
+          type='text'
+          name='passwordConagua'
+          placeholder='Contraseña de conagua'
+          onChange={guardarCliente}
+        />
+        <input
+          type='text'
+          name='numTitulo'
+          placeholder='Numero de titulo'
+          onChange={guardarCliente}
+        />
+        <input
+          type='text'
+          name='numSolicitud'
+          placeholder='Numero de solicitud o expediente'
+          onChange={guardarCliente}
+        />
+        <input
+          type='text'
+          name='ciudad'
+          placeholder='Ciudad'
+          onChange={guardarCliente}
+        />
         <input type='submit' value='Crear' />
       </form>
     </div>

@@ -24,7 +24,7 @@ const Plataforma = () => {
       }
     };
     consultar();
-  }, [clientes]);
+  }, []);
 
   if (!token) {
     return null;
@@ -38,7 +38,11 @@ const Plataforma = () => {
       </Link>
       <ul>
         {clientes.map((cli) => (
-          <li key={cli._id}>{cli.nombre}</li>
+          <li key={cli._id}>
+            <Link href='plataforma/[clienteId]' as={`plataforma/${cli._id}`}>
+              <a>{cli.nombre}</a>
+            </Link>
+          </li>
         ))}
       </ul>
     </div>

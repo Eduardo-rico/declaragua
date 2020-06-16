@@ -100,10 +100,29 @@ const mostrarCliente = async (req, res) => {
 };
 const agregarCliente = async (req, res) => {
   //TODO crear un cliente en la db cuando el usuario esta autenticado, con el payload del jwt se crea req.usuarioId y esto se guarda en el cliente nuevo como creadoPor: req.usuarioId
-  const { nombre } = req.body;
+  const {
+    nombre,
+    rfc,
+    fechaMaxima,
+    nombreConagua,
+    passwordConagua,
+    numTitulo,
+    numSolicitud,
+    ciudad
+  } = req.body;
   const { usuarioId } = req;
   try {
-    const nuevoCliente = await Cliente.create({ creadoPor: usuarioId, nombre });
+    const nuevoCliente = await Cliente.create({
+      creadoPor: usuarioId,
+      nombre,
+      rfc,
+      fechaMaxima,
+      nombreConagua,
+      passwordConagua,
+      numTitulo,
+      numSolicitud,
+      ciudad
+    });
     if (!nombre) {
       res.status(404).json({ Error: 'No nombre del cliente' });
     } else {
@@ -122,7 +141,16 @@ const agregarCliente = async (req, res) => {
 const modificarCliente = async (req, res) => {
   //TODO busca los clientes cuando el id del usuario es igual al creadoPor del cliente y el id del cliente es igual al que viene el req.props.clienteId
   //cambia por lo menos el nombre
-  const { nombre } = req.body;
+  const {
+    nombre,
+    rfc,
+    fechaMaxima,
+    nombreConagua,
+    passwordConagua,
+    numTitulo,
+    numSolicitud,
+    ciudad
+  } = req.body;
   const { clienteId } = req.params;
   const { usuarioId } = req;
   if (!nombre) {
@@ -131,7 +159,16 @@ const modificarCliente = async (req, res) => {
   try {
     const clienteCambiado = await Cliente.findOneAndUpdate(
       { _id: clienteId, creadoPor: usuarioId },
-      { nombre },
+      {
+        nombre,
+        rfc,
+        fechaMaxima,
+        nombreConagua,
+        passwordConagua,
+        numTitulo,
+        numSolicitud,
+        ciudad
+      },
       { new: true }
     );
     if (!clienteCambiado) {
