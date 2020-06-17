@@ -24,7 +24,7 @@ mongoose.connect(
 const app = express();
 
 //constantes
-const port = process.env.PORT || 5256;
+const port = 3001;
 
 //middlewares
 app.use(bodyParser.json());
@@ -35,3 +35,8 @@ app.use('/', usuarioRouter);
 app.use('/plataforma', usuarioInternosRouter);
 
 //listen
+
+app.use(express.static(__dirname + '/public'));
+app.get('/', (req, res) => {
+  res.sendFile(__dirname + 'index.html');
+});
