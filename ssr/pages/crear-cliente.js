@@ -80,6 +80,12 @@ const CrearCliente = () => {
           placeholder='Ciudad'
           onChange={guardarCliente}
         />
+        <input
+          type='text'
+          name='estatus'
+          placeholder='Estatus'
+          onChange={guardarCliente}
+        />
         <input type='submit' value='Crear' />
       </form>
     </div>

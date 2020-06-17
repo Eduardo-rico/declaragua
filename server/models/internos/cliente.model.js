@@ -9,7 +9,8 @@ const ClienteSchema = new mongoose.Schema({
   passwordConagua: String,
   numTitulo: String,
   numSolicitud: String,
-  ciudad: String
+  ciudad: String,
+  estatus: String
 });
 
 module.exports = mongoose.model('Cliente', ClienteSchema);

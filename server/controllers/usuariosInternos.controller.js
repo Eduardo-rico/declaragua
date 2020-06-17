@@ -100,75 +100,65 @@ const mostrarCliente = async (req, res) => {
 };
 const agregarCliente = async (req, res) => {
   //TODO crear un cliente en la db cuando el usuario esta autenticado, con el payload del jwt se crea req.usuarioId y esto se guarda en el cliente nuevo como creadoPor: req.usuarioId
-  const {
-    nombre,
-    rfc,
-    fechaMaxima,
-    nombreConagua,
-    passwordConagua,
-    numTitulo,
-    numSolicitud,
-    ciudad
-  } = req.body;
+  // const {
+  //   nombre,
+  //   rfc,
+  //   fechaMaxima,
+  //   nombreConagua,
+  //   passwordConagua,
+  //   numTitulo,
+  //   numSolicitud,
+  //   ciudad,
+  //   estatus
+  // } = req.body;
   const { usuarioId } = req;
   try {
     const nuevoCliente = await Cliente.create({
-      creadoPor: usuarioId,
-      nombre,
-      rfc,
-      fechaMaxima,
-      nombreConagua,
-      passwordConagua,
-      numTitulo,
-      numSolicitud,
-      ciudad
+      ...req.body,
+      creadoPor: usuarioId
     });
-    if (!nombre) {
-      res.status(404).json({ Error: 'No nombre del cliente' });
-    } else {
-      await Usuario.findByIdAndUpdate(
-        { _id: usuarioId },
-        { $push: { clientes: nuevoCliente } }
-      ); //.populate('clientes'); SE MODIFICA EL USUARIO PARA MOSTRAR ARRAY DE CLIENTES
-      res.status(200).json({ nuevoCliente });
-    }
+
+    await Usuario.findByIdAndUpdate(
+      { _id: usuarioId },
+      { $push: { clientes: nuevoCliente } }
+    ); //.populate('clientes'); SE MODIFICA EL USUARIO PARA MOSTRAR ARRAY DE CLIENTES
+    res.status(200).json({ nuevoCliente });
   } catch (error) {
     res
       .status(500)
       .json({ Error: 'No se creo el cliente', error: error.message });
+    console.log('error en crear usuario', error);
   }
 };
 const modificarCliente = async (req, res) => {
   //TODO busca los clientes cuando el id del usuario es igual al creadoPor del cliente y el id del cliente es igual al que viene el req.props.clienteId
   //cambia por lo menos el nombre
-  const {
-    nombre,
-    rfc,
-    fechaMaxima,
-    nombreConagua,
-    passwordConagua,
-    numTitulo,
-    numSolicitud,
-    ciudad
-  } = req.body;
+  // const {
+  //   nombre,
+  //   rfc,
+  //   fechaMaxima,
+  //   nombreConagua,
+  //   passwordConagua,
+  //   numTitulo,
+  //   numSolicitud,
+  //   ciudad
+  // } = req.body;
   const { clienteId } = req.params;
   const { usuarioId } = req;
-  if (!nombre) {
-    res.status(404).json({ Error: 'No nombre del cliente' });
-  }
   try {
     const clienteCambiado = await Cliente.findOneAndUpdate(
       { _id: clienteId, creadoPor: usuarioId },
-      {
-        nombre,
-        rfc,
-        fechaMaxima,
-        nombreConagua,
-        passwordConagua,
-        numTitulo,
-        numSolicitud,
-        ciudad
-      },
+      // {
+      //   nombre,
+      //   rfc,
+      //   fechaMaxima,
+      //   nombreConagua,
+      //   passwordConagua,
+      //   numTitulo,
+      //   numSolicitud,
+      //   ciudad
+      // },
+      { ...req.body },
       { new: true }
     );
     if (!clienteCambiado) {

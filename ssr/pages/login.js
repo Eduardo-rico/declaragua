@@ -68,6 +68,7 @@ const Login = () => {
         required
       />
       <input type='submit' value='Iniciar Sesión' />
+      {error ? <p>Hubo un error</p> : null}
     </form>
   );
 };

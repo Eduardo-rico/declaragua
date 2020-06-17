@@ -27,6 +27,7 @@ const Cliente = () => {
           }
         });
         guardarCliente(clientes.data.Mensaje);
+        console.log(clientes.data.Mensaje);
         console.log('volviendo a consultar');
       }
     };
@@ -34,7 +35,6 @@ const Cliente = () => {
   }, []);
 
   const eliminarCliente = async () => {
-    console.log('hola');
     const clienteEliminado = await axios({
       method: 'DELETE',
       url: `http://localhost:5256/plataforma/usuarios/${clienteId}`,
@@ -56,11 +56,17 @@ const Cliente = () => {
       <p>Número de Titulo: {cliente.numTitulo} </p>
       <p>Número de solicitud o expediente: {cliente.numSolicitud} </p>
       <p>Ciudad: {cliente.ciudad} </p>
-      <p>Fecha máxima: {moment(cliente.fechaMaxima).format('L')} </p>
-      <p>
-        En {moment(cliente.fechaMaxima).locale('es').fromNow()} se vence plazo
-        máximo
-      </p>
+      {cliente.fechaMaxima ? (
+        <>
+          <p>Fecha máxima: {moment(cliente.fechaMaxima).format('L')} </p>
+          <p>
+            En {moment(cliente.fechaMaxima).locale('es').fromNow()} se vence
+            plazo máximo
+          </p>
+        </>
+      ) : null}
+      <p>Estatus: {cliente.estatus}</p>
+
       <Link href='/plataforma'>
         <a>Regresar a tus usuarios</a>
       </Link>
