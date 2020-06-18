@@ -3,6 +3,8 @@ import axios from 'axios';
 import Link from 'next/link';
 import Router from 'next/router';
 
+import { URL } from '../constantes/constantes';
+
 const Plataforma = () => {
   const [clientes, guardarClientes] = useState([]);
   const [token, guardarToken] = useState('');
@@ -15,7 +17,7 @@ const Plataforma = () => {
       } else {
         const clientes = await axios({
           method: 'GET',
-          url: 'http://localhost:5256/plataforma/usuarios',
+          url: `${URL}/plataforma/usuarios`,
           headers: {
             Authorization: tokenLocal
           }
@@ -32,7 +34,11 @@ const Plataforma = () => {
 
   return (
     <div>
-      <h1>Plataforma</h1>
+      <h1>
+        <Link href='/plataforma'>
+          <a>Plataforma</a>
+        </Link>
+      </h1>
       <Link href='/crear-cliente'>
         <a>Crear Cliente</a>
       </Link>
@@ -45,6 +51,14 @@ const Plataforma = () => {
           </li>
         ))}
       </ul>
+      <button
+        onClick={() => {
+          localStorage.removeItem('token');
+          Router.push('/');
+        }}
+      >
+        Cerrar sesión
+      </button>
     </div>
   );
 };

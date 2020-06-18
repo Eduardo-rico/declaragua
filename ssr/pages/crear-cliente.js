@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Router from 'next/router';
+import Link from 'next/link';
+
+import { URL } from '../constantes/constantes';
 
 const CrearCliente = () => {
   const [clientenuevo, guardarClienteNuevo] = useState({});
@@ -21,7 +24,7 @@ const CrearCliente = () => {
     }
     const res = await axios({
       method: 'POST',
-      url: 'http://localhost:5256/plataforma/usuarios/nuevo',
+      url: `${URL}/plataforma/usuarios/nuevo`,
       headers: {
         Authorization: tokenLocal
       },
@@ -36,6 +39,11 @@ const CrearCliente = () => {
 
   return (
     <div>
+      <h2>
+        <Link href='/plataforma'>
+          <a>Plataforma</a>
+        </Link>
+      </h2>
       <form onSubmit={enviarCliente}>
         <input
           type='text'

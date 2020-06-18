@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import Router from 'next/router';
 import axios from 'axios';
 
+import { URL } from '../constantes/constantes';
+
 const Signup = () => {
   const [status, guardarStatus] = useState(0);
   const [usuario, guardarUsuario] = useState({});
@@ -34,7 +36,7 @@ const Signup = () => {
     e.preventDefault();
     const respuesta = await axios({
       method: 'POST',
-      url: 'http://localhost:5256/plataforma/nuevoUsuario',
+      url: `${URL}/plataforma/nuevoUsuario`,
       data: {
         email: usuario.email,
         password: usuario.password,
@@ -42,6 +44,7 @@ const Signup = () => {
       }
     });
     guardarStatus(respuesta.status);
+    console.log(respuesta);
   };
 
   return (
