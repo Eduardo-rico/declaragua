@@ -4,6 +4,7 @@ import Router from 'next/router';
 import Link from 'next/link';
 
 import { URL } from '../constantes/constantes';
+import Layout from '../components/Layout';
 
 const CrearCliente = () => {
   const [clientenuevo, guardarClienteNuevo] = useState({});
@@ -38,65 +39,67 @@ const CrearCliente = () => {
   };
 
   return (
-    <div>
-      <h2>
-        <Link href='/plataforma'>
-          <a>Plataforma</a>
-        </Link>
-      </h2>
-      <form onSubmit={enviarCliente}>
-        <input
-          type='text'
-          name='nombre'
-          placeholder='nombre'
-          onChange={guardarCliente}
-        />
-        <input
-          type='text'
-          name='rfc'
-          placeholder='rfc'
-          onChange={guardarCliente}
-        />
-        <input type='date' name='fechaMaxima' onChange={guardarCliente} />
-        <input
-          type='text'
-          name='nombreConagua'
-          placeholder='Nombre de conagua:'
-          onChange={guardarCliente}
-        />
-        <input
-          type='text'
-          name='passwordConagua'
-          placeholder='Contraseña de conagua'
-          onChange={guardarCliente}
-        />
-        <input
-          type='text'
-          name='numTitulo'
-          placeholder='Numero de titulo'
-          onChange={guardarCliente}
-        />
-        <input
-          type='text'
-          name='numSolicitud'
-          placeholder='Numero de solicitud o expediente'
-          onChange={guardarCliente}
-        />
-        <input
-          type='text'
-          name='ciudad'
-          placeholder='Ciudad'
-          onChange={guardarCliente}
-        />
-        <input
-          type='text'
-          name='estatus'
-          placeholder='Estatus'
-          onChange={guardarCliente}
-        />
-        <input type='submit' value='Crear' />
-      </form>
-    </div>
+    <Layout>
+      <div>
+        <h2>
+          <Link href='/plataforma'>
+            <a>Plataforma</a>
+          </Link>
+        </h2>
+        <form onSubmit={enviarCliente}>
+          <input
+            type='text'
+            name='nombre'
+            placeholder='nombre'
+            onChange={guardarCliente}
+          />
+          <input
+            type='text'
+            name='rfc'
+            placeholder='rfc'
+            onChange={guardarCliente}
+          />
+          <input type='date' name='fechaMaxima' onChange={guardarCliente} />
+          <input
+            type='text'
+            name='nombreConagua'
+            placeholder='Nombre de conagua:'
+            onChange={guardarCliente}
+          />
+          <input
+            type='text'
+            name='passwordConagua'
+            placeholder='Contraseña de conagua'
+            onChange={guardarCliente}
+          />
+          <input
+            type='text'
+            name='numTitulo'
+            placeholder='Numero de titulo'
+            onChange={guardarCliente}
+          />
+          <input
+            type='text'
+            name='numSolicitud'
+            placeholder='Numero de solicitud o expediente'
+            onChange={guardarCliente}
+          />
+          <input
+            type='text'
+            name='ciudad'
+            placeholder='Ciudad'
+            onChange={guardarCliente}
+          />
+          <input
+            type='text'
+            name='estatus'
+            placeholder='Estatus'
+            onChange={guardarCliente}
+          />
+          <input type='submit' value='Crear' />
+        </form>
+      </div>
+    </Layout>
   );
 };
 

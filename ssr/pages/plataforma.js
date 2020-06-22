@@ -4,6 +4,7 @@ import Link from 'next/link';
 import Router from 'next/router';
 
 import { URL } from '../constantes/constantes';
+import Layout from '../components/Layout';
 
 const Plataforma = () => {
   const [clientes, guardarClientes] = useState([]);
@@ -33,33 +34,35 @@ const Plataforma = () => {
   }
 
   return (
-    <div>
-      <h1>
-        <Link href='/plataforma'>
-          <a>Plataforma</a>
+    <Layout>
+      <div>
+        <h1>
+          <Link href='/plataforma'>
+            <a>Plataforma</a>
+          </Link>
+        </h1>
+        <Link href='/crear-cliente'>
+          <a>Crear Cliente</a>
         </Link>
-      </h1>
-      <Link href='/crear-cliente'>
-        <a>Crear Cliente</a>
-      </Link>
-      <ul>
-        {clientes.map((cli) => (
-          <li key={cli._id}>
-            <Link href='plataforma/[clienteId]' as={`plataforma/${cli._id}`}>
-              <a>{cli.nombre}</a>
-            </Link>
-          </li>
-        ))}
-      </ul>
-      <button
-        onClick={() => {
-          localStorage.removeItem('token');
-          Router.push('/');
-        }}
-      >
-        Cerrar sesión
-      </button>
-    </div>
+        <ul>
+          {clientes.map((cli) => (
+            <li key={cli._id}>
+              <Link href='plataforma/[clienteId]' as={`plataforma/${cli._id}`}>
+                <a>{cli.nombre}</a>
+              </Link>
+            </li>
+          ))}
+        </ul>
+        <button
+          onClick={() => {
+            localStorage.removeItem('token');
+            Router.push('/');
+          }}
+        >
+          Cerrar sesión
+        </button>
+      </div>
+    </Layout>
   );
 };
 

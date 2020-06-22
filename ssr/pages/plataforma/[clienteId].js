@@ -6,6 +6,7 @@ import Router from 'next/router';
 import moment from 'moment';
 
 import { URL } from '../../constantes/constantes';
+import Layout from '../../components/Layout';
 
 const Cliente = () => {
   const router = useRouter();
@@ -50,46 +51,48 @@ const Cliente = () => {
   };
 
   return (
-    <div>
-      <h2>
-        <Link href='/plataforma'>
-          <a>Plataforma</a>
-        </Link>
-      </h2>
-      {/* <p>{cliente._id} </p>
+    <Layout>
+      <div>
+        <h2>
+          <Link href='/plataforma'>
+            <a>Plataforma</a>
+          </Link>
+        </h2>
+        {/* <p>{cliente._id} </p>
       <p>{cliente.creadoPor} </p> */}
-      {!cargando ? <p>Hola</p> : null}
-      <p>Nombre: {cliente.nombre} </p>
-      <p>RFC: {cliente.rfc} </p>
-      <p>Nombre conagua: CONAGUA{cliente.nombreConagua} </p>
-      <p>Contraseña Conagua: {cliente.passwordConagua} </p>
-      <p>Número de Titulo: {cliente.numTitulo} </p>
-      <p>Número de solicitud o expediente: {cliente.numSolicitud} </p>
-      <p>Ciudad: {cliente.ciudad} </p>
-      {cliente.fechaMaxima ? (
-        <>
-          <p>Fecha máxima: {moment(cliente.fechaMaxima).format('L')} </p>
-          <p>
-            En {moment(cliente.fechaMaxima).locale('es').fromNow()} se vence
-            plazo máximo
-          </p>
-        </>
-      ) : null}
-      <p>Estatus: {cliente.estatus}</p>
+        {!cargando ? <p>Hola</p> : null}
+        <p>Nombre: {cliente.nombre} </p>
+        <p>RFC: {cliente.rfc} </p>
+        <p>Nombre conagua: CONAGUA{cliente.nombreConagua} </p>
+        <p>Contraseña Conagua: {cliente.passwordConagua} </p>
+        <p>Número de Titulo: {cliente.numTitulo} </p>
+        <p>Número de solicitud o expediente: {cliente.numSolicitud} </p>
+        <p>Ciudad: {cliente.ciudad} </p>
+        {cliente.fechaMaxima ? (
+          <>
+            <p>Fecha máxima: {moment(cliente.fechaMaxima).format('L')} </p>
+            <p>
+              En {moment(cliente.fechaMaxima).locale('es').fromNow()} se vence
+              plazo máximo
+            </p>
+          </>
+        ) : null}
+        <p>Estatus: {cliente.estatus}</p>
 
-      <Link href='/plataforma'>
-        <a>Regresar a tus usuarios</a>
-      </Link>
-      <button onClick={eliminarCliente}>Eliminar cliente</button>
-      {/* <Link
+        <Link href='/plataforma'>
+          <a>Regresar a tus usuarios</a>
+        </Link>
+        <button onClick={eliminarCliente}>Eliminar cliente</button>
+        {/* <Link
         href='/plataforma/editar/[editarId]'
         as={`/plataforma/editar/${cliente._id}`}
         
       >
         <a>Editar cliente</a>
       </Link> */}
-      <p>Editar Cliente</p>
-    </div>
+        <p>Editar Cliente</p>
+      </div>
+    </Layout>
   );
 };
 

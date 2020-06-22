@@ -3,6 +3,7 @@ import axios from 'axios';
 import Router from 'next/router';
 
 import { URL } from '../constantes/constantes';
+import Layout from '../components/Layout';
 
 const Login = () => {
   const [status, guardarStatus] = useState(0);
@@ -54,24 +55,26 @@ const Login = () => {
   };
 
   return (
-    <form onSubmit={enviarFormulario}>
-      <input
-        type='email'
-        name='email'
-        placeholder='contacto@correo.com'
-        onChange={datosformulario}
-        required
-      />
-      <input
-        type='password'
-        name='password'
-        placeholder='*******'
-        onChange={datosformulario}
-        required
-      />
-      <input type='submit' value='Iniciar Sesión' />
-      {error ? <p>Hubo un error</p> : null}
-    </form>
+    <Layout>
+      <form onSubmit={enviarFormulario}>
+        <input
+          type='email'
+          name='email'
+          placeholder='contacto@correo.com'
+          onChange={datosformulario}
+          required
+        />
+        <input
+          type='password'
+          name='password'
+          placeholder='*******'
+          onChange={datosformulario}
+          required
+        />
+        <input type='submit' value='Iniciar Sesión' />
+        {error ? <p>Hubo un error</p> : null}
+      </form>
+    </Layout>
   );
 };
 

@@ -3,6 +3,7 @@ import Router from 'next/router';
 import axios from 'axios';
 
 import { URL } from '../constantes/constantes';
+import Layout from '../components/Layout';
 
 const Signup = () => {
   const [status, guardarStatus] = useState(0);
@@ -48,30 +49,32 @@ const Signup = () => {
   };
 
   return (
-    <form onSubmit={enviarFormulario}>
-      <input
-        type='text'
-        name='nombre'
-        placeholder='Escribe tu nombre'
-        onChange={datosformulario}
-        required
-      />
-      <input
-        type='email'
-        name='email'
-        placeholder='contacto@correo.com'
-        onChange={datosformulario}
-        required
-      />
-      <input
-        type='password'
-        name='password'
-        placeholder='*******'
-        onChange={datosformulario}
-        required
-      />
-      <input type='submit' value='Crear cuenta' />
-    </form>
+    <Layout>
+      <form onSubmit={enviarFormulario}>
+        <input
+          type='text'
+          name='nombre'
+          placeholder='Escribe tu nombre'
+          onChange={datosformulario}
+          required
+        />
+        <input
+          type='email'
+          name='email'
+          placeholder='contacto@correo.com'
+          onChange={datosformulario}
+          required
+        />
+        <input
+          type='password'
+          name='password'
+          placeholder='*******'
+          onChange={datosformulario}
+          required
+        />
+        <input type='submit' value='Crear cuenta' />
+      </form>
+    </Layout>
   );
 };
 

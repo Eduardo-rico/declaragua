@@ -7,7 +7,8 @@ const create = async (req, res) => {
     nombre,
     telefono,
     estado,
-    correo
+    correo,
+    municipio
   });
   res.status(200).json(nuevoUsuario);
 };
