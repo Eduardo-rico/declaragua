@@ -6,6 +6,52 @@ import Link from 'next/link';
 import { URL } from '../constantes/constantes';
 import Layout from '../components/Layout';
 
+import styled from '@emotion/styled';
+const Contenedor = styled.div`
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+`;
+
+const Boton = styled.input`
+  height: 2.2rem;
+  background-color: #ee239de4;
+  border: none;
+  border-radius: 50px;
+  max-width: calc(100% - 1rem);
+  transition: 0.3s ease;
+  &:hover {
+    background-color: #ff239d99;
+    opacity: 0.8;
+    cursor: pointer;
+  }
+`;
+
+const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+  min-width: 200px;
+  width: 20%;
+  input:last-of-type {
+    margin: 1rem 0 0 0;
+    border: none;
+  }
+`;
+
+const Input = styled.input`
+  border: none;
+  border-bottom: 1px solid #aaa;
+  max-width: 100%;
+  margin-bottom: 0.5rem;
+  height: 1.4rem;
+  text-align: center;
+  background-color: none;
+  &::placeholder {
+    color: blue;
+    opacity: 0.8;
+  }
+`;
+
 const CrearCliente = () => {
   const [clientenuevo, guardarClienteNuevo] = useState({});
   const [respuesta, guardarRespuesta] = useState({});
@@ -40,65 +86,65 @@ const CrearCliente = () => {
 
   return (
     <Layout>
-      <div>
-        <h2>
-          <Link href='/plataforma'>
-            <a>Plataforma</a>
-          </Link>
-        </h2>
-        <form onSubmit={enviarCliente}>
-          <input
+      <h2>
+        <Link href='/plataforma'>
+          <a>Plataforma</a>
+        </Link>
+      </h2>
+      <Contenedor>
+        <Form onSubmit={enviarCliente}>
+          <Input
             type='text'
             name='nombre'
             placeholder='nombre'
             onChange={guardarCliente}
           />
-          <input
+          <Input
             type='text'
             name='rfc'
             placeholder='rfc'
             onChange={guardarCliente}
           />
-          <input type='date' name='fechaMaxima' onChange={guardarCliente} />
-          <input
+          <Input type='date' name='fechaMaxima' onChange={guardarCliente} />
+          <Input
             type='text'
             name='nombreConagua'
             placeholder='Nombre de conagua:'
             onChange={guardarCliente}
           />
-          <input
+          <Input
             type='text'
             name='passwordConagua'
             placeholder='Contraseña de conagua'
             onChange={guardarCliente}
           />
-          <input
+          <Input
             type='text'
             name='numTitulo'
             placeholder='Numero de titulo'
             onChange={guardarCliente}
           />
-          <input
+          <Input
             type='text'
             name='numSolicitud'
             placeholder='Numero de solicitud o expediente'
             onChange={guardarCliente}
           />
-          <input
+          <Input
             type='text'
             name='ciudad'
             placeholder='Ciudad'
             onChange={guardarCliente}
           />
-          <input
+          <Input
             type='text'
             name='estatus'
             placeholder='Estatus'
             onChange={guardarCliente}
           />
-          <input type='submit' value='Crear' />
-        </form>
-      </div>
+          <Boton type='submit' value='Crear' />
+        </Form>
+      </Contenedor>
     </Layout>
   );
 };

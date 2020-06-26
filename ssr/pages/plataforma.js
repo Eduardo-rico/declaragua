@@ -6,6 +6,22 @@ import Router from 'next/router';
 import { URL } from '../constantes/constantes';
 import Layout from '../components/Layout';
 
+import styled from '@emotion/styled';
+
+const Boton = styled.button`
+  height: 2.2rem;
+  background-color: #ee239de4;
+  border: none;
+  border-radius: 50px;
+  max-width: calc(100% - 1rem);
+  transition: 0.3s ease;
+  &:hover {
+    background-color: #ff239d99;
+    opacity: 0.8;
+    cursor: pointer;
+  }
+`;
+
 const Plataforma = () => {
   const [clientes, guardarClientes] = useState([]);
   const [token, guardarToken] = useState('');
@@ -41,9 +57,14 @@ const Plataforma = () => {
             <a>Plataforma</a>
           </Link>
         </h1>
-        <Link href='/crear-cliente'>
-          <a>Crear Cliente</a>
-        </Link>
+
+        <Boton
+          onClick={() => {
+            Router.push('/crear-cliente');
+          }}
+        >
+          Crear cliente nuevo
+        </Boton>
         <ul>
           {clientes.map((cli) => (
             <li key={cli._id}>
@@ -53,14 +74,14 @@ const Plataforma = () => {
             </li>
           ))}
         </ul>
-        <button
+        <Boton
           onClick={() => {
             localStorage.removeItem('token');
             Router.push('/');
           }}
         >
           Cerrar sesión
-        </button>
+        </Boton>
       </div>
     </Layout>
   );
