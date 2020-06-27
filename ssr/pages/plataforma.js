@@ -7,6 +7,7 @@ import { URL } from '../constantes/constantes';
 import Layout from '../components/Layout';
 
 import styled from '@emotion/styled';
+import PlataformaLayout from '../components/PlataformaLayout';
 
 const Boton = styled.button`
   height: 2.2rem;
@@ -49,41 +50,47 @@ const Plataforma = () => {
     return null;
   }
 
-  return (
-    <Layout>
-      <div>
-        <h1>
-          <Link href='/plataforma'>
-            <a>Plataforma</a>
-          </Link>
-        </h1>
+  const CerrarSesion = () => {
+    return (
+      <Boton
+        onClick={() => {
+          localStorage.removeItem('token');
+          Router.push('/');
+        }}
+      >
+        Cerrar sesión
+      </Boton>
+    );
+  };
 
-        <Boton
-          onClick={() => {
-            Router.push('/crear-cliente');
-          }}
-        >
-          Crear cliente nuevo
-        </Boton>
-        <ul>
-          {clientes.map((cli) => (
-            <li key={cli._id}>
-              <Link href='plataforma/[clienteId]' as={`plataforma/${cli._id}`}>
-                <a>{cli.nombre}</a>
-              </Link>
-            </li>
-          ))}
-        </ul>
-        <Boton
-          onClick={() => {
-            localStorage.removeItem('token');
-            Router.push('/');
-          }}
-        >
-          Cerrar sesión
-        </Boton>
-      </div>
-    </Layout>
+  const NuevoCliente = () => (
+    <Boton
+      onClick={() => {
+        Router.push('/crear-cliente');
+      }}
+    >
+      Crear cliente nuevo
+    </Boton>
+  );
+
+  return (
+    <PlataformaLayout CerrarSesion={CerrarSesion} NuevoCliente={NuevoCliente}>
+      <h1>
+        <Link href='/plataforma'>
+          <a>Plataforma</a>
+        </Link>
+      </h1>
+
+      <ul>
+        {clientes.map((cli) => (
+          <li key={cli._id}>
+            <Link href='plataforma/[clienteId]' as={`plataforma/${cli._id}`}>
+              <a>{cli.nombre}</a>
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </PlataformaLayout>
   );
 };
 

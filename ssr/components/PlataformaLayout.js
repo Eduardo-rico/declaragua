@@ -4,6 +4,9 @@ import styled from '@emotion/styled';
 const Header = styled.header`
   width: 100%;
   text-align: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 `;
 const Footer = styled.footer`
   width: 100%;
@@ -13,16 +16,17 @@ const Footer = styled.footer`
 const Lateral = styled.aside`
   grid-column-start: span 3;
   border: 1px solid black;
-
   @media screen and (min-width: 768px) {
     grid-row-start: span 3;
     grid-column: 1/2;
     border: 1px solid black;
+    overflow: scroll;
   }
   @media screen and (min-width: 1100px) {
     grid-row: 1/4;
     grid-column: 1/2;
     border: 1px solid black;
+    overflow: scroll;
   }
 `;
 
@@ -50,23 +54,36 @@ const ContenedorGeneral = styled.div`
   }
 `;
 
+const Botones = styled.div`
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  max-height: auto;
+  min-height: 5px;
+`;
+
 const PlataformaLayout = (props) => {
+  const BotonCerrar = props.CerrarSesion;
+  const BotonNuevo = props.NuevoCliente;
+
   return (
     <Fragment>
       <Header>
         <p>PRUEBA DEL LAYOUT DE LA PLATAFORMA</p>
+        <BotonCerrar />
       </Header>
       <ContenedorGeneral>
         <Lateral>
           <p>Esto es el Lateral</p>
+          <Botones>
+            <BotonNuevo />
+          </Botones>
         </Lateral>
         <Contenido>{props.children}</Contenido>
 
         <style jsx global>
           {`
-            * {
-              box-sizing: border-box;
-            }
             body {
               margin: 0;
               padding: 0;
