@@ -50,18 +50,16 @@ const Plataforma = () => {
     return null;
   }
 
-  const CerrarSesion = () => {
-    return (
-      <Boton
-        onClick={() => {
-          localStorage.removeItem('token');
-          Router.push('/');
-        }}
-      >
-        Cerrar sesión
-      </Boton>
-    );
-  };
+  const CerrarSesion = () => (
+    <Boton
+      onClick={() => {
+        localStorage.removeItem('token');
+        Router.push('/');
+      }}
+    >
+      Cerrar sesión
+    </Boton>
+  );
 
   const NuevoCliente = () => (
     <Boton
@@ -81,15 +79,19 @@ const Plataforma = () => {
         </Link>
       </h1>
 
-      <ul>
-        {clientes.map((cli) => (
-          <li key={cli._id}>
-            <Link href='plataforma/[clienteId]' as={`plataforma/${cli._id}`}>
-              <a>{cli.nombre}</a>
-            </Link>
-          </li>
-        ))}
-      </ul>
+      {clientes.length === 0 ? (
+        <p>Cargando...</p>
+      ) : (
+        <ul>
+          {clientes.map((cli) => (
+            <li key={cli._id}>
+              <Link href='plataforma/[clienteId]' as={`plataforma/${cli._id}`}>
+                <a>{cli.nombre}</a>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      )}
     </PlataformaLayout>
   );
 };
