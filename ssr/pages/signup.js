@@ -5,25 +5,13 @@ import axios from 'axios';
 import { URL } from '../constantes/constantes';
 import Layout from '../components/Layout';
 
+import Boton from '../components/Boton';
+
 import styled from '@emotion/styled';
 const Contenedor = styled.div`
   display: flex;
   justify-content: center;
   padding: 10px;
-`;
-
-const Boton = styled.input`
-  height: 2.2rem;
-  background-color: #ee239de4;
-  border: none;
-  border-radius: 50px;
-  max-width: calc(100% - 1rem);
-  transition: 0.3s ease;
-  &:hover {
-    background-color: #ff239d99;
-    opacity: 0.8;
-    cursor: pointer;
-  }
 `;
 
 const Form = styled.form`
@@ -119,7 +107,7 @@ const Signup = () => {
             onChange={datosformulario}
             required
           />
-          <Boton type='submit' value='Crear cuenta' />
+          <Boton type='submit'>Crear Cuenta</Boton>
         </Form>
       </Contenedor>
     </Layout>

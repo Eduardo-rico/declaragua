@@ -1,5 +1,8 @@
 import React, { Fragment } from 'react';
 import styled from '@emotion/styled';
+import Avatar from './Avatar';
+
+//cambiar el grid pls
 
 const Header = styled.header`
   width: 100%;
@@ -14,6 +17,7 @@ const Footer = styled.footer`
 `;
 
 const Lateral = styled.aside`
+  justify-content: center;
   grid-column-start: span 3;
   border: 1px solid black;
   @media screen and (min-width: 768px) {
@@ -57,10 +61,7 @@ const ContenedorGeneral = styled.div`
 const Botones = styled.div`
   border: 1px solid black;
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  max-height: auto;
-  min-height: 5px;
+  justify-content: center;
 `;
 
 const PlataformaLayout = (props) => {
@@ -76,6 +77,7 @@ const PlataformaLayout = (props) => {
       <ContenedorGeneral>
         <Lateral>
           <p>Esto es el Lateral</p>
+          <Avatar />
           <Botones>
             <BotonNuevo />
           </Botones>

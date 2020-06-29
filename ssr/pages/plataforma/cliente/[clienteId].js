@@ -5,8 +5,8 @@ import { useRouter } from 'next/router';
 import Router from 'next/router';
 import moment from 'moment';
 
-import { URL } from '../../constantes/constantes';
-import Layout from '../../components/Layout';
+import { URL } from '../../../constantes/constantes';
+import Layout from '../../../components/Layout';
 
 import styled from '@emotion/styled';
 const Contenedor = styled.div`

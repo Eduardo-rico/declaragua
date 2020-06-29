@@ -3,8 +3,8 @@ import axios from 'axios';
 import Router from 'next/router';
 import Link from 'next/link';
 
-import { URL } from '../constantes/constantes';
-import Layout from '../components/Layout';
+import { URL } from '../../../constantes/constantes';
+import Layout from '../../../components/Layout';
 
 import styled from '@emotion/styled';
 const Contenedor = styled.div`

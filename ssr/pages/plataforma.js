@@ -4,23 +4,17 @@ import Link from 'next/link';
 import Router from 'next/router';
 
 import { URL } from '../constantes/constantes';
-import Layout from '../components/Layout';
-
-import styled from '@emotion/styled';
 import PlataformaLayout from '../components/PlataformaLayout';
 
-const Boton = styled.button`
-  height: 2.2rem;
-  background-color: #ee239de4;
-  border: none;
-  border-radius: 50px;
-  max-width: calc(100% - 1rem);
-  transition: 0.3s ease;
-  &:hover {
-    background-color: #ff239d99;
-    opacity: 0.8;
-    cursor: pointer;
-  }
+import Boton from '../components/Boton';
+import ListaClientes from '../components/ListaClientes';
+
+import styled from '@emotion/styled';
+
+const Wrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  max-width: 80%;
 `;
 
 const Plataforma = () => {
@@ -64,7 +58,7 @@ const Plataforma = () => {
   const NuevoCliente = () => (
     <Boton
       onClick={() => {
-        Router.push('/crear-cliente');
+        Router.push('/plataforma/cliente/crear-cliente');
       }}
     >
       Crear cliente nuevo
@@ -78,20 +72,13 @@ const Plataforma = () => {
           <a>Plataforma</a>
         </Link>
       </h1>
-
-      {clientes.length === 0 ? (
-        <p>Cargando...</p>
-      ) : (
-        <ul>
-          {clientes.map((cli) => (
-            <li key={cli._id}>
-              <Link href='plataforma/[clienteId]' as={`plataforma/${cli._id}`}>
-                <a>{cli.nombre}</a>
-              </Link>
-            </li>
-          ))}
-        </ul>
-      )}
+      <Wrapper>
+        {clientes.length === 0 ? (
+          <p>No tienes ningun usuario...</p>
+        ) : (
+          <ListaClientes clientes={clientes} />
+        )}
+      </Wrapper>
     </PlataformaLayout>
   );
 };
