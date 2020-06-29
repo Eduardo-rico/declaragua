@@ -7,6 +7,9 @@ const Boton = styled.button`
   border-radius: 50px;
   transition: 0.3s ease;
   color: black;
+  padding: 0.6rem;
+  justify-content: center;
+  align-items: center
   &:hover {
     background-color: #4c99ed;
     opacity: 0.9;

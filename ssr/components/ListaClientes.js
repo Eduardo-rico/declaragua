@@ -17,12 +17,7 @@ const ListaClientes = ({ clientes }) => {
   return (
     <Lista>
       {clientes.map((cli) => (
-        <Item cli={cli}>
-          {/* <Link
-            href='plataforma/cliente/[clienteId]'
-            as={`plataforma/cliente/${cli._id}`}
-          ></Link> */}
-        </Item>
+        <Item cli={cli} />
       ))}
     </Lista>
   );

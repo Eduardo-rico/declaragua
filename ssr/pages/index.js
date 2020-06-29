@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import Layout from '../components/Layout';
-import { css } from '@emotion/core';
 import styled from '@emotion/styled';
 
 const Entrar = styled.div`
