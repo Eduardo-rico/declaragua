@@ -15,6 +15,7 @@ const Boton = styled.button`
     opacity: 0.9;
     cursor: pointer;
   }
+  
 `;
 
 export default Boton;

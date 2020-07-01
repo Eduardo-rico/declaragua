@@ -1,35 +1,59 @@
 import React, { Fragment } from 'react';
 import styled from '@emotion/styled';
 import Avatar from './Avatar';
+import Boton from './Boton';
+import CerrarSesion from './CerrarSesion';
 
 //cambiar el grid pls
 
 const Header = styled.header`
   grid-area: header;
-  height: 100px;
+  height: 70px;
   text-align: center;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border: 1px solid black;
+  background-color: #e7f9fd;
+  p {
+    padding-left: 30px;
+  }
 `;
 const Footer = styled.footer`
   grid-area: footer;
-  height: 100px;
-  border: solid 2px peru;
+  height: 50px;
   align-self: end;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  div {
+    display: flex;
+    justify-content: space-between;
+
+    p {
+      font-size: 12px;
+      padding: 10px;
+    }
+  }
 `;
 
 const ContenedorGeneral = styled.div`
   display: grid;
-  align-content: stretch;
   grid-template-areas:
     'header'
-    'lateral'
     'contenido'
     'footer';
 
   @media screen and (min-width: 768px) {
+    min-height: 100vh;
+    grid-template-areas:
+      'lateral header header'
+      'lateral contenido contenido'
+      'lateral contenido contenido'
+      'footer footer footer';
+  }
+
+  @media screen and (min-width: 1100px) {
     grid-template-areas:
       'header header header'
       'lateral contenido contenido'
@@ -40,11 +64,20 @@ const ContenedorGeneral = styled.div`
 
 const Lateral = styled.aside`
   grid-area: lateral;
+  display: none;
   @media screen and (min-width: 768px) {
-    border: 1px solid black;
+    max-width: 30vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    grid-area: lateral;
+    background-color: #e7f9fd;
+    border-bottom-right-radius: 10px;
+    padding: 30px 10px 10px 10px;
   }
   @media screen and (min-width: 1100px) {
-    border: 1px solid black;
+    border-bottom-right-radius: 10px;
+    max-width: 20vw;
   }
 `;
 
@@ -55,11 +88,16 @@ const Contenido = styled.div`
   flex-direction: column;
   align-items: center;
   padding: 2rem 0;
+  min-height: calc(100vh - 120px);
+  max-height: calc(100vh - 120px);
+  overflow: scroll;
   @media screen and (min-width: 768px) {
     border: 4px solid peru;
+    min-width: 70vw;
   }
   @media screen and (min-width: 1100px) {
     border: 1px solid black;
+    min-width: 80vw;
   }
 `;
 
@@ -70,27 +108,42 @@ const Botones = styled.div`
 `;
 
 const PlataformaLayout = (props) => {
-  const BotonCerrar = props.CerrarSesion;
-  const BotonNuevo = props.NuevoCliente;
+  // if (props.CerrarSesion) {
+  //   const BotonCerrar = props.CerrarSesion;
+  //   const BotonNuevo = props.NuevoCliente;
+  // }
 
   return (
     <Fragment>
       <ContenedorGeneral>
         <Header>
-          <p>PRUEBA DEL LAYOUT DE LA PLATAFORMA</p>
-          <BotonCerrar />
+          <p>LOGO</p>
+          <CerrarSesion />
         </Header>
         <Lateral>
-          <p>Esto es el Lateral</p>
           <Avatar />
-          <p>Esto es el Lateral</p>
-          <Botones>
-            <BotonNuevo />
-          </Botones>
+          <div>
+            <p>
+              TODO: PONER NUEVA INFORMACIÓN DEL USUARIO, POR EJEMPLO ULTIMO
+              USUARIO CREADO O ALGO ASI{' '}
+            </p>
+          </div>
         </Lateral>
-        <Contenido>{props.children}</Contenido>
+        <Contenido>
+          <Boton
+            onClick={() => {
+              Router.push('/plataforma/cliente/crear-cliente');
+            }}
+          >
+            Crear cliente nuevo
+          </Boton>
+          {props.children}
+        </Contenido>
         <Footer>
-          <p>Esto es el Footer</p>
+          <div>
+            <p>Declaragua</p>
+            <p>RicoSotomayor 2020.</p>
+          </div>
         </Footer>
 
         <style jsx global>

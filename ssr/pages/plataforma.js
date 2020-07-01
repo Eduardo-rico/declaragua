@@ -15,6 +15,7 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   max-width: 80%;
+  margin-top: 20px;
 `;
 
 const Plataforma = () => {
@@ -44,34 +45,8 @@ const Plataforma = () => {
     return null;
   }
 
-  const CerrarSesion = () => (
-    <Boton
-      onClick={() => {
-        localStorage.removeItem('token');
-        Router.push('/');
-      }}
-    >
-      Cerrar sesión
-    </Boton>
-  );
-
-  const NuevoCliente = () => (
-    <Boton
-      onClick={() => {
-        Router.push('/plataforma/cliente/crear-cliente');
-      }}
-    >
-      Crear cliente nuevo
-    </Boton>
-  );
-
   return (
-    <PlataformaLayout CerrarSesion={CerrarSesion} NuevoCliente={NuevoCliente}>
-      <h1>
-        <Link href='/plataforma'>
-          <a>Plataforma</a>
-        </Link>
-      </h1>
+    <PlataformaLayout>
       <Wrapper>
         {clientes.length === 0 ? (
           <p>No tienes ningun usuario...</p>

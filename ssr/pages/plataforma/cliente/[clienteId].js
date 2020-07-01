@@ -9,6 +9,7 @@ import { URL } from '../../../constantes/constantes';
 import Layout from '../../../components/Layout';
 
 import styled from '@emotion/styled';
+import PlataformaLayout from '../../../components/PlataformaLayout';
 const Contenedor = styled.div`
   display: flex;
   flex-direction: column;
@@ -81,12 +82,7 @@ const Cliente = () => {
   };
 
   return (
-    <Layout>
-      <h2>
-        <Link href='/plataforma'>
-          <a>Plataforma</a>
-        </Link>
-      </h2>
+    <PlataformaLayout>
       <Contenedor>
         <div>
           {/* <p>{cliente._id} </p>
@@ -127,7 +123,7 @@ const Cliente = () => {
       <Link href='/plataforma'>
         <a>Regresar a tus usuarios</a>
       </Link>
-    </Layout>
+    </PlataformaLayout>
   );
 };
 

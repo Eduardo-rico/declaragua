@@ -7,6 +7,7 @@ import { URL } from '../../../constantes/constantes';
 import Layout from '../../../components/Layout';
 
 import styled from '@emotion/styled';
+import PlataformaLayout from '../../../components/PlataformaLayout';
 const Contenedor = styled.div`
   display: flex;
   justify-content: center;
@@ -85,7 +86,7 @@ const CrearCliente = () => {
   };
 
   return (
-    <Layout>
+    <PlataformaLayout>
       <h2>
         <Link href='/plataforma'>
           <a>Plataforma</a>
@@ -145,7 +146,7 @@ const CrearCliente = () => {
           <Boton type='submit' value='Crear' />
         </Form>
       </Contenedor>
-    </Layout>
+    </PlataformaLayout>
   );
 };
 
