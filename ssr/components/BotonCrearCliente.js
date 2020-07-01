@@ -6,7 +6,7 @@ const BotonCrearCliente = () => {
   return (
     <Boton
       onClick={() => {
-        Router.push('/plataforma/cliente/crear-cliente');
+        Router.push('cliente/crear-cliente');
       }}
     >
       Crear cliente nuevo

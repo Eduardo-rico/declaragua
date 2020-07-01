@@ -144,7 +144,7 @@ const CrearCliente = () => {
       </Contenedor>
       <Boton
         onClick={() => {
-          Router.push('/plataforma/');
+          Router.push('/plataforma');
         }}
       >
         Cancelar
