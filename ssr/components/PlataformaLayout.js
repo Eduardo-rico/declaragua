@@ -3,6 +3,7 @@ import styled from '@emotion/styled';
 import Avatar from './Avatar';
 import Boton from './Boton';
 import CerrarSesion from './CerrarSesion';
+import Router from 'next/router';
 
 //cambiar el grid pls
 
@@ -129,16 +130,7 @@ const PlataformaLayout = (props) => {
             </p>
           </div>
         </Lateral>
-        <Contenido>
-          <Boton
-            onClick={() => {
-              Router.push('/plataforma/cliente/crear-cliente');
-            }}
-          >
-            Crear cliente nuevo
-          </Boton>
-          {props.children}
-        </Contenido>
+        <Contenido>{props.children}</Contenido>
         <Footer>
           <div>
             <p>Declaragua</p>

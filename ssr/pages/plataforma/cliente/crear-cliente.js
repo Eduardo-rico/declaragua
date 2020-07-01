@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Router from 'next/router';
+import Boton from '../../../components/Boton';
 import Link from 'next/link';
 
 import { URL } from '../../../constantes/constantes';
@@ -14,7 +15,7 @@ const Contenedor = styled.div`
   padding: 10px;
 `;
 
-const Boton = styled.input`
+const BotonIn = styled.input`
   height: 2.2rem;
   background-color: #ee239de4;
   border: none;
@@ -87,11 +88,6 @@ const CrearCliente = () => {
 
   return (
     <PlataformaLayout>
-      <h2>
-        <Link href='/plataforma'>
-          <a>Plataforma</a>
-        </Link>
-      </h2>
       <Contenedor>
         <Form onSubmit={enviarCliente}>
           <Input
@@ -143,9 +139,16 @@ const CrearCliente = () => {
             placeholder='Estatus'
             onChange={guardarCliente}
           />
-          <Boton type='submit' value='Crear' />
+          <BotonIn type='submit' value='Crear' />
         </Form>
       </Contenedor>
+      <Boton
+        onClick={() => {
+          Router.push('/plataforma/');
+        }}
+      >
+        Cancelar
+      </Boton>
     </PlataformaLayout>
   );
 };

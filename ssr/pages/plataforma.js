@@ -10,6 +10,7 @@ import Boton from '../components/Boton';
 import ListaClientes from '../components/ListaClientes';
 
 import styled from '@emotion/styled';
+import BotonCrearCliente from '../components/BotonCrearCliente';
 
 const Wrapper = styled.div`
   display: flex;
@@ -47,6 +48,7 @@ const Plataforma = () => {
 
   return (
     <PlataformaLayout>
+      <BotonCrearCliente />
       <Wrapper>
         {clientes.length === 0 ? (
           <p>No tienes ningun usuario...</p>
