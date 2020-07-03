@@ -2,6 +2,7 @@ import React from 'react';
 import styled from '@emotion/styled';
 import { css } from '@emotion/core';
 import Link from 'next/link';
+import Router from 'next/router';
 
 const HeaderNav = styled.header`
   display: flex;
@@ -17,8 +18,8 @@ const Nav = styled.nav`
 const Li = styled.li`
   list-style: none;
   display: inline-block;
-  padding: 0 20px;
-  pointer
+  padding: 0 10px;
+  cursor: pointer;
 `;
 
 const ALi = styled.a`
@@ -30,54 +31,63 @@ const ALi = styled.a`
 `;
 
 const ButtonA = styled.button`
-  margin-left: 20px;
-  padding: 9px 25px;
+  margin-left: 10px;
+  padding: 9px 20px;
   background-color: rgba(0, 139, 169, 1);
   border: none;
   border-radius: 50px;
   cursor: pointer;
   transition: all 0.3s ease 0s;
+  max-width: 150px;
 
   &:hover {
-    color: rgba(0, 139, 169, 0.8);
+    color: white;
   }
 `;
 
-const Logo = styled.p`
+const Logo = styled.img`
   cursor: pointer;
   margin-right: auto;
+  max-height: 60px;
 `;
 
 const NavBar = () => {
   return (
     <HeaderNav>
-      <Logo>Logo</Logo>
-      <nav>
+      <Link href='/'>
+        <a>
+          <Logo src='/logopng.png' />
+        </a>
+      </Link>
+      <Nav>
         <ul>
           <Li>
             {' '}
             <Link href='#'>
-              <ALi>Servicios</ALi>
+              <ALi>Contacto</ALi>
             </Link>
           </Li>
           <Li>
             {' '}
             <Link href='#'>
-              <ALi>contacto</ALi>
+              <ALi>Portafolio</ALi>
             </Link>
           </Li>
           <Li>
             {' '}
             <Link href='#'>
-              <ALi>proyectos</ALi>
+              <ALi>Curriculum</ALi>
             </Link>
           </Li>
         </ul>
-      </nav>
-
-      <ALi>
-        <ButtonA>Contacto</ButtonA>
-      </ALi>
+        <ButtonA
+          onClick={() => {
+            Router.push('/declaragua');
+          }}
+        >
+          Declaraciones Conagua
+        </ButtonA>
+      </Nav>
     </HeaderNav>
   );
 };
