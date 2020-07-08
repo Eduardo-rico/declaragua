@@ -14,7 +14,18 @@ const Layout = (props) => {
         `}
       />
       <Head>
-        <title>Rico Sotomayor - Declaragua</title>
+        <title>Eduardo M. Rico Sotomayor</title>
+        <meta charset='utf-8' />
+        <meta
+          name='description'
+          content='Página personal de Eduardo Martín Rico Sotomayor y sus proyectos.'
+        />
+        <meta
+          name='keywords'
+          content='ricosotomayor, emrs, programacion, web, declaragua, conagua'
+        />
+        <meta name='author' content='Eduardo Martín Rico Sotomayor' />
+        <meta name='copyright' content='Eduardo Martín Rico Sotomayor' />
         <link rel='icon' href='/favicon.ico' />
         <link
           rel='stylesheet'
