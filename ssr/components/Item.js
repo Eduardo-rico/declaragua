@@ -2,26 +2,34 @@ import React, { useState } from 'react';
 import styled from '@emotion/styled';
 import Link from 'next/link';
 import Boton from './Boton';
+import Router from 'next/router';
 
 const ItemList = styled.li`
+  border-radius: 5px;
   list-style: none;
   position: relative;
-  margin: 2px;
-  padding: 2px;
+  margin: 3px;
+  padding: 6px;
   display: inline-block;
   min-width: 376px;
+  background-color: #d3e5ed;
   a {
     text-decoration: none;
     color: black;
   }
   &:hover {
-    background-color: #eee;
+    background-color: #ccedfc;
   }
 `;
 
 const ContenidoItem = styled.div`
-  border: solid red 2px;
   background-color: white;
+`;
+
+const DentroDelItem = styled.div`
+  display: flex;
+  padding: 7px;
+  flex-direction: column;
 `;
 
 const Item = ({ cli, children }) => {
@@ -38,19 +46,20 @@ const Item = ({ cli, children }) => {
       <div style={{ maxHeight: 'auto' }}>
         {clicked ? (
           <ContenidoItem>
-            <div>
-              <p>Hola 1</p>
-              <p>Hola 1</p>
-              <p>Hola 1</p>
-            </div>
-            <div styles={{ display: 'flex', alignItems: 'center' }}>
-              <Link
-                href='plataforma/cliente/[clienteId]'
-                as={`plataforma/cliente/${cli._id}`}
+            <DentroDelItem>
+              <p>Nombre de Conagua: CONAGUA{cli.nombreConagua}</p>
+              <p>Contraseña de Conagua: {cli.passwordConagua}</p>
+              <Boton
+                onClick={() => {
+                  Router.push(
+                    '/plataforma/cliente/[clienteId]',
+                    `/plataforma/cliente/${cli._id}`
+                  );
+                }}
               >
-                <Boton>Ir al cliente</Boton>
-              </Link>
-            </div>
+                Ir al cliente
+              </Boton>
+            </DentroDelItem>
           </ContenidoItem>
         ) : null}
       </div>

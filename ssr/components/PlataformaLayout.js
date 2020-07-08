@@ -4,6 +4,7 @@ import Avatar from './Avatar';
 import Boton from './Boton';
 import CerrarSesion from './CerrarSesion';
 import Router from 'next/router';
+import Link from 'next/link';
 
 //cambiar el grid pls
 
@@ -107,6 +108,12 @@ const Botones = styled.div`
   display: flex;
   justify-content: center;
 `;
+const Logo = styled.img`
+  cursor: pointer;
+  margin-top: 10px;
+  margin-left: 8.1vw;
+  max-height: 60px;
+`;
 
 const PlataformaLayout = (props) => {
   // if (props.CerrarSesion) {
@@ -118,7 +125,11 @@ const PlataformaLayout = (props) => {
     <Fragment>
       <ContenedorGeneral>
         <Header>
-          <p>LOGO</p>
+          <Link href='/'>
+            <a>
+              <Logo src='/logopng.png' />
+            </a>
+          </Link>
           <CerrarSesion />
         </Header>
         <Lateral>

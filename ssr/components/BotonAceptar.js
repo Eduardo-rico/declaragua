@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-const Boton = styled.button`
+const BotonAceptar = styled.button`
   height: 2.2rem;
   background-color: #4cb3ec;
   border: none;
@@ -11,10 +11,10 @@ const Boton = styled.button`
   justify-content: center;
   align-items: center;
   &:hover {
-    background-color: #2196f3; /*#4c99ed*/
+    background-color: green;
     opacity: 0.9;
     cursor: pointer;
   }
 `;
 
-export default Boton;
+export default BotonAceptar;

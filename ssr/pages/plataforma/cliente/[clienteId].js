@@ -62,7 +62,7 @@ const Cliente = () => {
           }
         });
         guardarCliente(clientes.data.Mensaje);
-        console.log(router.query);
+        // console.log(router.query);
         console.log('volviendo a consultar');
         guardarCargando(clienteId);
       }
@@ -107,7 +107,17 @@ const Cliente = () => {
           <p>Estatus: {cliente.estatus}</p>
 
           <Botones>
-            <Boton>Editar Cliente</Boton>
+            <Boton
+              onClick={() =>
+                Router.push(
+                  `/plataforma/cliente/editar/[editarId]`,
+                  `/plataforma/cliente/editar/${clienteId}`
+                )
+              }
+            >
+              Editar Cliente
+            </Boton>
+
             <Boton onClick={eliminarCliente}>Eliminar cliente</Boton>
           </Botones>
         </div>

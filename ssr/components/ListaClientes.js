@@ -4,8 +4,7 @@ import styled from '@emotion/styled';
 import Item from './Item';
 
 const Lista = styled.ul`
-  border: 2px solid blue;
-  padding: 0;
+  padding: 10px;
   margin: 0;
   display: flex;
   flex-direction: column;
@@ -17,7 +16,7 @@ const ListaClientes = ({ clientes }) => {
   return (
     <Lista>
       {clientes.map((cli) => (
-        <Item cli={cli} />
+        <Item key={cli._id} cli={cli} />
       ))}
     </Lista>
   );

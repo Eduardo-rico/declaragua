@@ -9,6 +9,7 @@ import Layout from '../../../components/Layout';
 
 import styled from '@emotion/styled';
 import PlataformaLayout from '../../../components/PlataformaLayout';
+
 const Contenedor = styled.div`
   display: flex;
   justify-content: center;

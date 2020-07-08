@@ -6,7 +6,7 @@ import Router from 'next/router';
 
 const HeaderNav = styled.header`
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
   padding: 30px 10%;
 `;
@@ -64,12 +64,6 @@ const NavBar = () => {
           <Li>
             {' '}
             <Link href='#'>
-              <ALi>Contacto</ALi>
-            </Link>
-          </Li>
-          <Li>
-            {' '}
-            <Link href='#'>
               <ALi>Portafolio</ALi>
             </Link>
           </Li>
@@ -77,6 +71,12 @@ const NavBar = () => {
             {' '}
             <Link href='#'>
               <ALi>Curriculum</ALi>
+            </Link>
+          </Li>
+          <Li>
+            {' '}
+            <Link href='#'>
+              <ALi>Contacto</ALi>
             </Link>
           </Li>
         </ul>
