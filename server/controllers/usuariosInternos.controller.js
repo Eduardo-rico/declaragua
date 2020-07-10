@@ -21,7 +21,7 @@ const login = async (req, res) => {
 
     if (compararPassword) {
       const token = jwt.sign({ usuarioEncontrado }, process.env.SECRETO, {
-        expiresIn: '24h'
+        expiresIn: '24d'
       });
       res.status(202).json({
         Mensaje: 'Bienvenido, ahi va el token',

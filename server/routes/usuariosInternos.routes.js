@@ -1,7 +1,7 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
 
-const auth = require('../helpers/autenticar');
+const auth = require("../helpers/autenticar");
 
 const {
   login,
@@ -10,16 +10,25 @@ const {
   mostrarCliente,
   agregarCliente,
   modificarCliente,
-  eliminarCliente
-} = require('../controllers/usuariosInternos.controller');
+  eliminarCliente,
+} = require("../controllers/usuariosInternos.controller");
 
-router.post('/login', login).post('/nuevoUsuario', nuevoUsuario);
+router.post("/login", login).post("/nuevoUsuario", nuevoUsuario);
 
-router.route('/usuarios').get(auth, mostrarClientes);
-router.route('/usuarios/:clienteId').get(auth, mostrarCliente);
-router.route('/usuarios/nuevo').post(auth, agregarCliente);
-router.route('/usuarios/:clienteId').put(auth, modificarCliente);
-router.route('/usuarios/:clienteId').delete(auth, eliminarCliente);
+router.route("/usuarios").get(auth, mostrarClientes);
+router.route("/usuarios/:clienteId").get(auth, mostrarCliente);
+router.route("/usuarios/nuevo").post(auth, agregarCliente);
+router.route("/usuarios/:clienteId").put(auth, modificarCliente);
+router.route("/usuarios/:clienteId").delete(auth, eliminarCliente);
+
+const { mostrarAguas, mostrarAgua, cambiarAgua, nuevaAgua, borrarAgua } =
+  require("../controllers/agua.controller");
+//usuarios compra-venta de agua
+router.get("/agua", auth, mostrarAguas);
+router.get("/agua/:idAgua", auth, mostrarAgua);
+router.put("/agua/cambiar/:idAgua", auth, cambiarAgua);
+router.post("/agua/crear", auth, nuevaAgua);
+router.delete("/agua/borrar/:idAgua", auth, borrarAgua);
 
 /**
  * put, patch, delete, get usr/id
