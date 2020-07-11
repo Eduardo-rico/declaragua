@@ -37,6 +37,9 @@ const Plataforma = () => {
           }
         });
         guardarClientes(clientes.data.Mensaje);
+        if (res.status === 401) {
+          Router.push('/login');
+        }
       }
     };
     consultar();

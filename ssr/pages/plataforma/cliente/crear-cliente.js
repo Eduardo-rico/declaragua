@@ -83,6 +83,8 @@ const CrearCliente = () => {
     console.log(res);
     if (res.status === 200) {
       Router.push('/plataforma');
+    } else if (res.status === 401) {
+      Router.push('/login');
     }
     guardarRespuesta(res);
   };

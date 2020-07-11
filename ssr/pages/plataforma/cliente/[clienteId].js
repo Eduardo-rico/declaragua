@@ -61,6 +61,9 @@ const Cliente = () => {
             Authorization: tokenLocal
           }
         });
+        if (clientes.status === 401) {
+          Router.push('/login');
+        }
         guardarCliente(clientes.data.Mensaje);
         // console.log(router.query);
         console.log('volviendo a consultar');
