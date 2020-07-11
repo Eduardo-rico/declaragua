@@ -79,6 +79,7 @@ const Login = () => {
     if (!respuesta || !respuesta.data.token) {
       guardarError(true);
       guardarStatus(respuesta.status);
+      localStorage.removeItem('token');
     } else {
       localStorage.setItem('token', `Bearer ${respuesta.data.token}`);
       const token = localStorage.getItem('token');

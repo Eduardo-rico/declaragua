@@ -82,7 +82,7 @@ const NavBar = () => {
         </ul>
         <ButtonA
           onClick={() => {
-            Router.push('/declaragua');
+            Router.push('/plataforma');
           }}
         >
           Declaraciones Conagua

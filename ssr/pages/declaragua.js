@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import styled from '@emotion/styled';
 import Layout from '../components/Layout';
 import Router from 'next/router';
+import Boton from '../components/Boton';
 
 const Entrar = styled.div`
   display: flex;
@@ -11,12 +12,12 @@ const Entrar = styled.div`
   border-radius: 5px;
   padding: 10px;
 
-  a  {
+  button  {
+    padding: 10px 10px 10px 10px;
     margin-right: 0.5rem;
-    text-decoration: none;
     cursor: pointer;
   }
-  a:last-of-type {
+  button:last-of-type {
     margin-right: 0;
   }
 `;
@@ -27,20 +28,12 @@ const Contenedor = styled.div`
 `;
 
 const Declaragua = () => {
-  const tokenLocal = localStorage.getItem('token');
-  if (tokenLocal) {
-    Router.push('/plataforma');
-  }
   return (
     <Layout>
       <Contenedor>
         <Entrar>
-          <Link href='/signup'>
-            <a>Crear cuenta</a>
-          </Link>
-          <Link href='/login'>
-            <a>Iniciar sesión</a>
-          </Link>
+          <Boton onClick={() => Router.push('/signup')}>Crear cuenta</Boton>
+          <Boton onClick={() => Router.push('/login')}>Entrar</Boton>
         </Entrar>
       </Contenedor>
     </Layout>
