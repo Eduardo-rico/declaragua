@@ -2,6 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import styled from '@emotion/styled';
 import Layout from '../components/Layout';
+import Router from 'next/router';
 
 const Entrar = styled.div`
   display: flex;
@@ -26,6 +27,10 @@ const Contenedor = styled.div`
 `;
 
 const Declaragua = () => {
+  const tokenLocal = localStorage.getItem('token');
+  if (tokenLocal) {
+    Router.push('/plataforma');
+  }
   return (
     <Layout>
       <Contenedor>

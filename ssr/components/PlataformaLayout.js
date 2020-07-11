@@ -1,10 +1,10 @@
-import React, { Fragment } from 'react';
-import styled from '@emotion/styled';
-import Avatar from './Avatar';
-import Boton from './Boton';
-import CerrarSesion from './CerrarSesion';
-import Router from 'next/router';
-import Link from 'next/link';
+import React, { Fragment } from "react";
+import styled from "@emotion/styled";
+import Avatar from "./Avatar";
+import Boton from "./Boton";
+import CerrarSesion from "./CerrarSesion";
+import Router from "next/router";
+import Link from "next/link";
 
 //cambiar el grid pls
 
@@ -125,9 +125,9 @@ const PlataformaLayout = (props) => {
     <Fragment>
       <ContenedorGeneral>
         <Header>
-          <Link href='/'>
+          <Link href="/plataforma">
             <a>
-              <Logo src='/logopng.png' />
+              <Logo src="/logopng.png" />
             </a>
           </Link>
           <CerrarSesion />
@@ -135,10 +135,7 @@ const PlataformaLayout = (props) => {
         <Lateral>
           <Avatar />
           <div>
-            <p>
-              TODO: PONER NUEVA INFORMACIÓN DEL USUARIO, POR EJEMPLO ULTIMO
-              USUARIO CREADO O ALGO ASI{' '}
-            </p>
+            <p>Algo</p>
           </div>
         </Lateral>
         <Contenido>{props.children}</Contenido>
