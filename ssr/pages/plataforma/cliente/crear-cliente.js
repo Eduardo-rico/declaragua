@@ -72,23 +72,24 @@ const CrearCliente = () => {
     if (!tokenLocal) {
       Router.push('/login');
     }
-    const res = await axios({
-      method: 'POST',
-      url: `${URL}/plataforma/usuarios/nuevo`,
-      headers: {
-        Authorization: tokenLocal
-      },
-      data: clientenuevo
-    });
-    console.log(res);
-    if (res.status === 200) {
-      Router.push('/plataforma');
-    } else if (res.status === 401) {
-      console.log('error');
-      console.log(res.status);
+    try {
+      const res = await axios({
+        method: 'POST',
+        url: `${URL}/plataforma/usuarios/nuevo`,
+        headers: {
+          Authorization: tokenLocal
+        },
+        data: clientenuevo
+      });
+      if (res.status === 200) {
+        Router.push('/plataforma');
+      }
+      guardarRespuesta(res);
+    } catch (error) {
+      console.log(error);
       Router.push('/login');
+      localStorage.removeItem('token');
     }
-    guardarRespuesta(res);
   };
 
   return (
