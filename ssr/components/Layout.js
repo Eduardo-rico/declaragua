@@ -1,7 +1,7 @@
-import React, { Fragment } from "react";
-import Head from "next/head";
-import NavBar from "./NavBar";
-import { Global, css } from "@emotion/core";
+import React, { Fragment } from 'react';
+import Head from 'next/head';
+import NavBar from './NavBar';
+import { Global, css } from '@emotion/core';
 
 const Layout = (props) => {
   return (
@@ -15,23 +15,23 @@ const Layout = (props) => {
       />
       <Head>
         <title>Eduardo M. Rico Sotomayor</title>
-        <meta charSet="utf-8" />
+        <meta charSet='utf-8' />
         <meta
-          name="description"
-          content="Página personal de Eduardo Martín Rico Sotomayor y sus proyectos."
+          name='description'
+          content='Página personal de Eduardo Martín Rico Sotomayor y sus proyectos.'
         />
         <meta
-          name="keywords"
-          content="ricosotomayor, emrs, programacion, web, declaragua, conagua"
+          name='keywords'
+          content='ricosotomayor, emrs, programacion, web, declaraciones, conagua'
         />
-        <meta name="author" content="Eduardo Martín Rico Sotomayor" />
-        <meta name="copyright" content="Eduardo Martín Rico Sotomayor" />
-        <link rel="icon" href="/favicon.ico" />
+        <meta name='author' content='Eduardo Martín Rico Sotomayor' />
+        <meta name='copyright' content='Eduardo Martín Rico Sotomayor' />
+        <link rel='icon' href='/favicon.ico' />
         <link
-          rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css"
-          integrity="sha256-WAgYcAck1C1/zEl5sBl5cfyhxtLgKGdpI3oKyJffVRI="
-          crossOrigin="anonymous"
+          rel='stylesheet'
+          href='https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css'
+          integrity='sha256-WAgYcAck1C1/zEl5sBl5cfyhxtLgKGdpI3oKyJffVRI='
+          crossOrigin='anonymous'
         />
       </Head>
       <NavBar />

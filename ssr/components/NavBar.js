@@ -85,11 +85,11 @@ const NavBar = () => {
             Router.push('/plataforma');
           }}
         >
-          Declaraciones Conagua
+          Gestión de usuarios del agua
         </ButtonA>
       </Nav>
     </HeaderNav>
   );
 };
-
+ˆ;
 export default NavBar;
