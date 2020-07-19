@@ -91,5 +91,5 @@ const NavBar = () => {
     </HeaderNav>
   );
 };
-ˆ;
+
 export default NavBar;
