@@ -19,8 +19,21 @@ const Wrapper = styled.div`
   margin-top: 20px;
 `;
 
+const InputBusqueda = styled.input`
+  margin-top: 2rem;
+  min-width: 400px;
+  min-height: 40px;
+  border: none;
+  border-bottom: 2px solid black;
+  :hover {
+    border-bottom: 2px solid blue;
+  }
+`;
+
 const Plataforma = () => {
   const [clientes, guardarClientes] = useState([]);
+  const [clientesbusqueda, guardarClientesBusqueda] = useState([]);
+  const [busqueda, guardarBusqueda] = useState('');
   const [token, guardarToken] = useState('');
   useEffect(() => {
     const consultar = async () => {
@@ -45,20 +58,51 @@ const Plataforma = () => {
     consultar();
   }, []);
 
+  // useEffect(() => {
+  //   const nombresFiltrados = clientes.filter((obj) => {
+  //     return obj.nombre.toLowerCase().includes(busqueda.toLowerCase());
+  //   });
+  //   guardarClientesBusqueda(nombresFiltrados);
+  // }, [busqueda, clientes]);
+
   if (!token) {
     return null;
   }
 
+  const buscar = (e) => {
+    guardarBusqueda(e.target.value);
+    const nombresFiltrados = clientes.filter((obj) => {
+      return obj.nombre.toLowerCase().includes(busqueda.toLowerCase());
+    });
+    guardarClientesBusqueda(nombresFiltrados);
+  };
+
+  // console.log(clientesbusqueda);
   return (
     <PlataformaLayout>
       <BotonCrearCliente />
-      <Wrapper>
-        {clientes.length === 0 ? (
-          <p>No tienes ningun usuario...</p>
-        ) : (
-          <ListaClientes clientes={clientes} />
-        )}
-      </Wrapper>
+      <InputBusqueda
+        onChange={buscar}
+        type='text'
+        placeholder='Buscar usuario'
+      />
+      {!busqueda ? (
+        <Wrapper>
+          {clientes.length === 0 ? (
+            <p>No tienes ningun usuario...</p>
+          ) : (
+            <ListaClientes clientes={clientes} />
+          )}
+        </Wrapper>
+      ) : (
+        <Wrapper>
+          {clientesbusqueda.length === 0 ? (
+            <p>No tienes ningun usuario...</p>
+          ) : (
+            <ListaClientes clientes={clientesbusqueda} />
+          )}
+        </Wrapper>
+      )}
     </PlataformaLayout>
   );
 };

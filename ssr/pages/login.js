@@ -6,6 +6,7 @@ import { URL } from '../constantes/constantes';
 import Layout from '../components/Layout';
 import Boton from '../components/Boton';
 import styled from '@emotion/styled';
+import Link from 'next/link';
 const Contenedor = styled.div`
   display: flex;
   justify-content: center;
@@ -20,6 +21,10 @@ const Form = styled.form`
   input:last-of-type {
     margin: 0.6rem 0 0 0;
     border: none;
+  }
+  a {
+    text-align: center;
+    margin-top: 1rem;
   }
 `;
 
@@ -107,6 +112,9 @@ const Login = () => {
           />
           <Boton type='submit'>Iniciar Sesión</Boton>
           {error ? <p>Hubo un error</p> : null}
+          <Link href='/signup'>
+            <a>No tienes cuenta?</a>
+          </Link>
         </Form>
       </Contenedor>
     </Layout>
