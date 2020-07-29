@@ -5,6 +5,8 @@ import Boton from './Boton';
 import CerrarSesion from './CerrarSesion';
 import Router from 'next/router';
 import Link from 'next/link';
+import { Global, css } from '@emotion/core';
+import Head from 'next/head';
 
 //cambiar el grid pls
 
@@ -123,6 +125,39 @@ const PlataformaLayout = (props) => {
 
   return (
     <Fragment>
+      <Global
+        styles={css`
+          /* * {
+            margin: 0;
+            padding: 0;
+          } */
+          body {
+            @import url('https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200;0,300;0,400;0,700;1,200;1,300;1,400;1,700&display=swap');
+            font-family: 'Mulish', sans-serif;
+          }
+        `}
+      />
+      <Head>
+        <title>Gestión de Usuarios de Conagua</title>
+        <meta charSet='utf-8' />
+        <meta
+          name='description'
+          content='Sistema de gestión de usuarios de conagua.'
+        />
+        <meta
+          name='keywords'
+          content='ricosotomayor, emrs, gestión, usuarios, declaraciones, conagua'
+        />
+        <meta name='author' content='Eduardo Martín Rico Sotomayor' />
+        <meta name='copyright' content='Eduardo Martín Rico Sotomayor' />
+        <link rel='icon' href='/favicon.ico' />
+        <link
+          rel='stylesheet'
+          href='https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css'
+          integrity='sha256-WAgYcAck1C1/zEl5sBl5cfyhxtLgKGdpI3oKyJffVRI='
+          crossOrigin='anonymous'
+        />
+      </Head>
       <ContenedorGeneral>
         <Header>
           <Link href='/plataforma'>
