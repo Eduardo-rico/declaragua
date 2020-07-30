@@ -66,7 +66,7 @@ const mostrarClientes = async (req, res) => {
 
   const clientesDeUsuarios = await Cliente.find({
     creadoPor: usuarioId
-  }); //.populate('creadoPor');
+  }).sort({ nombre: 1 }); //.populate('creadoPor');
   if (!clientesDeUsuarios) {
     res.status(404).json({ Error: 'No tienes ningun usuario' });
   }
