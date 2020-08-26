@@ -12,6 +12,7 @@ const ClienteSchema = new mongoose.Schema({
   ciudad: String,
   estatus: String,
   createdAt: { type: Date, default: Date.now },
+  notas: [{ type: mongoose.Schema.Types.ObjectId, ref: "Nota" }],
 });
 
 module.exports = mongoose.model("Cliente", ClienteSchema);

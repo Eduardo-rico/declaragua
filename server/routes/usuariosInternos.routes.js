@@ -11,6 +11,8 @@ const {
   agregarCliente,
   modificarCliente,
   eliminarCliente,
+  agregarNotaAlCliente,
+  eliminarNotadelCliente,
 } = require("../controllers/usuariosInternos.controller");
 
 router.post("/login", login).post("/nuevoUsuario", nuevoUsuario);
@@ -19,6 +21,14 @@ router.route("/usuarios").get(auth, mostrarClientes);
 router.route("/usuarios/:clienteId").get(auth, mostrarCliente);
 router.route("/usuarios/nuevo").post(auth, agregarCliente);
 router.route("/usuarios/:clienteId").put(auth, modificarCliente);
+router.route("/usuarios/agregarNota/:clienteId").put(
+  auth,
+  agregarNotaAlCliente,
+);
+router.route("/usuarios/eliminarNota/:notaId").delete(
+  auth,
+  eliminarNotadelCliente,
+);
 router.route("/usuarios/:clienteId").delete(auth, eliminarCliente);
 
 const { mostrarAguas, mostrarAgua, cambiarAgua, nuevaAgua, borrarAgua } =

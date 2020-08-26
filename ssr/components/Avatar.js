@@ -8,7 +8,7 @@ import Boton from './Boton';
 const ImagenAvatar = styled.div`
   width: 90px;
   height: 90px;
-  background-color: red;
+  background-color: #f0d7d6;
   margin: 0 auto;
   margin-bottom: 1rem;
   border-radius: 100px;

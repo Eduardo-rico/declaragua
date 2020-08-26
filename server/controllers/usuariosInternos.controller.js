@@ -1,5 +1,6 @@
 const Cliente = require('../models/internos/cliente.model');
 const Usuario = require('../models/internos/usuario.model');
+const Nota = require('../models/internos/nota.model');
 
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
@@ -84,7 +85,7 @@ const mostrarCliente = async (req, res) => {
     const clienteDeUsuario = await Cliente.findById({
       _id: clienteId,
       creadoPor: usuarioId
-    });
+    }).populate('notas');
     if (!clienteDeUsuario) {
       res
         .status(404)
@@ -192,6 +193,50 @@ const eliminarCliente = async (req, res) => {
   }
 };
 
+const agregarNotaAlCliente = async (req, res) => {
+  const { clienteId } = req.params;
+  const { usuarioId } = req;
+  try {
+    const clienteCambiado = await Cliente.findOne({
+      _id: clienteId,
+      creadoPor: usuarioId
+    });
+    if (!clienteCambiado) {
+      res.status(404).json({ Error: 'Usuario no modificado' });
+    } else {
+      const nuevaNota = req.body.nota;
+
+      const crearNota = await Nota.create({
+        nota: nuevaNota,
+        creadoPor: usuarioId,
+        perteneceAlCliente: clienteId
+      });
+      const clienteNuevo = await Cliente.findOneAndUpdate(
+        { _id: clienteId, creadoPor: usuarioId },
+        { $push: { notas: crearNota } },
+        { new: true }
+      ).populate('notas');
+      // console.log(crearNota);
+      res.status(200).json({ clienteNuevo });
+    }
+  } catch (error) {
+    res.status(500).json({ Error: 'Usuario no modificado', error });
+  }
+};
+
+const eliminarNotadelCliente = async (req, res) => {
+  const { notaId } = req.params;
+  const { usuarioId } = req;
+  try {
+    await Nota.findOneAndDelete({
+      _id: notaId
+    });
+    res.status(200).json({ Mensaje: 'Nota borrada' });
+  } catch (error) {
+    res.status(500).json({ Error: 'Usuario no modificado', error });
+  }
+};
+
 module.exports = {
   login,
   nuevoUsuario,
@@ -199,5 +244,7 @@ module.exports = {
   mostrarCliente,
   agregarCliente,
   modificarCliente,
-  eliminarCliente
+  eliminarCliente,
+  agregarNotaAlCliente,
+  eliminarNotadelCliente
 };

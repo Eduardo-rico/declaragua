@@ -1,12 +1,12 @@
-import React, { Fragment } from 'react';
-import styled from '@emotion/styled';
-import Avatar from './Avatar';
-import Boton from './Boton';
-import CerrarSesion from './CerrarSesion';
-import Router from 'next/router';
-import Link from 'next/link';
-import { Global, css } from '@emotion/core';
-import Head from 'next/head';
+import React, { Fragment } from "react";
+import styled from "@emotion/styled";
+import Avatar from "./Avatar";
+import Boton from "./Boton";
+import CerrarSesion from "./CerrarSesion";
+import Router from "next/router";
+import Link from "next/link";
+import { Global, css } from "@emotion/core";
+import Head from "next/head";
 
 //cambiar el grid pls
 
@@ -78,6 +78,7 @@ const Lateral = styled.aside`
     background-color: #e7f9fd;
     border-bottom-right-radius: 10px;
     padding: 30px 10px 10px 10px;
+    min-width: 250px;
   }
   @media screen and (min-width: 1100px) {
     border-bottom-right-radius: 10px;
@@ -139,30 +140,30 @@ const PlataformaLayout = (props) => {
       />
       <Head>
         <title>Gestión de Usuarios de Conagua</title>
-        <meta charSet='utf-8' />
+        <meta charSet="utf-8" />
         <meta
-          name='description'
-          content='Sistema de gestión de usuarios de conagua.'
+          name="description"
+          content="Sistema de gestión de usuarios de conagua."
         />
         <meta
-          name='keywords'
-          content='ricosotomayor, emrs, gestión, usuarios, declaraciones, conagua'
+          name="keywords"
+          content="ricosotomayor, emrs, gestión, usuarios, declaraciones, conagua"
         />
-        <meta name='author' content='Eduardo Martín Rico Sotomayor' />
-        <meta name='copyright' content='Eduardo Martín Rico Sotomayor' />
-        <link rel='icon' href='/favicon.ico' />
+        <meta name="author" content="Eduardo Martín Rico Sotomayor" />
+        <meta name="copyright" content="Eduardo Martín Rico Sotomayor" />
+        <link rel="icon" href="/favicon.ico" />
         <link
-          rel='stylesheet'
-          href='https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css'
-          integrity='sha256-WAgYcAck1C1/zEl5sBl5cfyhxtLgKGdpI3oKyJffVRI='
-          crossOrigin='anonymous'
+          rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css"
+          integrity="sha256-WAgYcAck1C1/zEl5sBl5cfyhxtLgKGdpI3oKyJffVRI="
+          crossOrigin="anonymous"
         />
       </Head>
       <ContenedorGeneral>
         <Header>
-          <Link href='/plataforma'>
+          <Link href="/plataforma">
             <a>
-              <Logo src='/logopng.png' />
+              <Logo src="/logopng.png" />
             </a>
           </Link>
           <CerrarSesion />
