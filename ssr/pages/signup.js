@@ -58,12 +58,12 @@ const Signup = () => {
       Router.push('/login');
     } else if (status === 400) {
       guardarError(true);
-      console.log('Con error, estatus 400');
+      console.error('Con error, estatus 400');
     } else if (status === 0) {
       guardarError(false);
     } else {
       guardarError(true);
-      console.log('Con error, estatus 500', status);
+      console.error('Con error, estatus 500', status);
     }
   }, [status]);
 
@@ -80,10 +80,10 @@ const Signup = () => {
         }
       });
       guardarStatus(respuesta.status);
-      console.log(respuesta);
+      // console.log(respuesta);
     } catch (error) {
       guardarError(true);
-      console.log('Con error, estatus 500', error);
+      console.error('Con error, estatus 500', error);
     }
   };
 
@@ -125,7 +125,7 @@ const Signup = () => {
                 padding: '20px'
               }}
             >
-              Hubo un error, prueba de nuevo!
+              Hubo un error, prueba con otro correo!
             </p>
           ) : null}
         </Form>
