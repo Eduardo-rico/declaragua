@@ -69,17 +69,22 @@ const Signup = () => {
 
   const enviarFormulario = async (e) => {
     e.preventDefault();
-    const respuesta = await axios({
-      method: 'POST',
-      url: `${URL}/plataforma/nuevoUsuario`,
-      data: {
-        email: usuario.email,
-        password: usuario.password,
-        nombre: usuario.nombre
-      }
-    });
-    guardarStatus(respuesta.status);
-    console.log(respuesta);
+    try {
+      const respuesta = await axios({
+        method: 'POST',
+        url: `${URL}/plataforma/nuevoUsuario`,
+        data: {
+          email: usuario.email,
+          password: usuario.password,
+          nombre: usuario.nombre
+        }
+      });
+      guardarStatus(respuesta.status);
+      console.log(respuesta);
+    } catch (error) {
+      guardarError(true);
+      console.log('Con error, estatus 500', error);
+    }
   };
 
   return (
@@ -108,6 +113,21 @@ const Signup = () => {
             required
           />
           <Boton type='submit'>Crear Cuenta</Boton>
+          {error ? (
+            <p
+              style={{
+                color: 'white',
+                marginTop: '15px',
+                justifyContent: 'center',
+                backgroundColor: 'red',
+                textAlign: 'center',
+                fontSize: '20px',
+                padding: '20px'
+              }}
+            >
+              Hubo un error, prueba de nuevo!
+            </p>
+          ) : null}
         </Form>
       </Contenedor>
     </Layout>

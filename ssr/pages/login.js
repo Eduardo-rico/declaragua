@@ -72,23 +72,28 @@ const Login = () => {
   }, [status]);
 
   const enviarFormulario = async (e) => {
-    e.preventDefault();
-    const respuesta = await axios({
-      method: 'POST',
-      url: `${URL}/plataforma/login`,
-      data: {
-        email: usuario.email,
-        password: usuario.password
+    try {
+      e.preventDefault();
+      const respuesta = await axios({
+        method: 'POST',
+        url: `${URL}/plataforma/login`,
+        data: {
+          email: usuario.email,
+          password: usuario.password
+        }
+      });
+      if (!respuesta || !respuesta.data.token) {
+        guardarError(true);
+        guardarStatus(respuesta.status);
+        localStorage.removeItem('token');
+      } else {
+        localStorage.setItem('token', `Bearer ${respuesta.data.token}`);
+        const token = localStorage.getItem('token');
+        guardarStatus(respuesta.status);
       }
-    });
-    if (!respuesta || !respuesta.data.token) {
+    } catch (error) {
       guardarError(true);
-      guardarStatus(respuesta.status);
-      localStorage.removeItem('token');
-    } else {
-      localStorage.setItem('token', `Bearer ${respuesta.data.token}`);
-      const token = localStorage.getItem('token');
-      guardarStatus(respuesta.status);
+      console.log('Con error, estatus 500', error);
     }
   };
 
@@ -111,7 +116,21 @@ const Login = () => {
             required
           />
           <Boton type='submit'>Iniciar Sesión</Boton>
-          {error ? <p>Hubo un error</p> : null}
+          {error ? (
+            <p
+              style={{
+                color: 'white',
+                marginTop: '15px',
+                justifyContent: 'center',
+                backgroundColor: 'red',
+                textAlign: 'center',
+                fontSize: '20px',
+                padding: '20px'
+              }}
+            >
+              Hubo un error, prueba de nuevo!
+            </p>
+          ) : null}
           <Link href='/signup'>
             <a>No tienes cuenta?</a>
           </Link>

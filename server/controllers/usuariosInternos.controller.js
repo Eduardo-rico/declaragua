@@ -42,17 +42,23 @@ const nuevoUsuario = async (req, res) => {
       .status(400)
       .json({ Error: 'Nombre, email y password son oblicatorios' });
   } else {
-    const passwordEncriptado = await bcrypt.hash(password, 10);
-    const nuevoUsuario = await Usuario.create({
-      nombre,
-      email,
-      password: passwordEncriptado
-    });
+    try {
+      const passwordEncriptado = await bcrypt.hash(password, 10);
+      const nuevoUsuario = await Usuario.create({
+        nombre,
+        email,
+        password: passwordEncriptado
+      });
 
-    if (nuevoUsuario) {
-      res.status(201).json({ Mensaje: 'Usuario creado correctamente' });
-    } else {
-      res.status(500).json({ Error: 'Error al crear el usuario' });
+      if (nuevoUsuario) {
+        res.status(201).json({ Mensaje: 'Usuario creado correctamente' });
+      } else {
+        res.status(500).json({ Error: 'Error al crear el usuario' });
+      }
+    } catch (error) {
+      res
+        .status(500)
+        .json({ Error: 'Error al crear el usuario', error: error });
     }
   }
 };

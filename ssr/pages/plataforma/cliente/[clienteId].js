@@ -148,7 +148,7 @@ const Cliente = () => {
   return (
     <PlataformaLayout>
       <Contenedor>
-        <div style={{ maxWidth: '80%' }}>
+        <div>
           {/* <p>{cliente._id} </p>
       <p>{cliente.creadoPor} </p> */}
           {!cargando ? <p>Hola</p> : null}
