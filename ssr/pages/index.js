@@ -1,6 +1,6 @@
-import Link from 'next/link';
-import Layout from '../components/Layout';
-import styled from '@emotion/styled';
+import Link from "next/link";
+import Layout from "../components/Layout";
+import styled from "@emotion/styled";
 // import { createGlobalStyle } from "styled-components";
 // const GlobalStyles = createGlobalStyle`
 //   @import url('https://fonts.googleapis.com/css?family=Notable');
@@ -9,13 +9,13 @@ import styled from '@emotion/styled';
 //   }
 // `
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCity,
   faMailBulk,
-  faInfoCircle
-} from '@fortawesome/free-solid-svg-icons';
-import { faGithub } from '@fortawesome/free-brands-svg-icons';
+  faInfoCircle,
+} from "@fortawesome/free-solid-svg-icons";
+import { faGithub } from "@fortawesome/free-brands-svg-icons";
 
 const Contenedor = styled.div`
   justify-content: center;
@@ -106,27 +106,27 @@ export default function Home() {
       <Contenedor>
         <Left>
           <Avatar>
-            <Imagen src='/avatar.jpeg' />
+            <Imagen src="/avatar.jpeg" />
           </Avatar>
           <Contact>
             <PInformation>
-              <FontAwesomeIcon icon={faInfoCircle} width='16' />
+              <FontAwesomeIcon icon={faInfoCircle} width="16" />
               Mi nombre es Eduardo Rico y soy químico computacional de la UNAM,
-              soy estudiante de ingeniería en sistemas computacionales y
-              programador web
+              actualmente estoy interesado en la combinación entre la química y
+              las tecnologías web.
             </PInformation>
             <PInformation>
-              <FontAwesomeIcon icon={faCity} width='16' />
+              <FontAwesomeIcon icon={faCity} width="16" />
               Ciudad: CDMX
             </PInformation>
             <PInformation>
-              <FontAwesomeIcon icon={faGithub} width='16' />
-              <LinksProfile href='https://github.com/Eduardo-rico'>
+              <FontAwesomeIcon icon={faGithub} width="16" />
+              <LinksProfile href="https://github.com/Eduardo-rico">
                 Eduardo-rico
               </LinksProfile>
             </PInformation>
             <PInformation>
-              <FontAwesomeIcon icon={faMailBulk} width='16' />
+              <FontAwesomeIcon icon={faMailBulk} width="16" />
               Contacto: eduardo@ricosotomayor.com
             </PInformation>
           </Contact>
