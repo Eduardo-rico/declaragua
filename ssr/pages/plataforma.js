@@ -21,7 +21,7 @@ const Wrapper = styled.div`
 
 const InputBusqueda = styled.input`
   margin-top: 2rem;
-  min-width: 400px;
+  min-width: 315px;
   min-height: 40px;
   border: none;
   border-bottom: 2px solid black;

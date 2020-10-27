@@ -11,7 +11,7 @@ const ItemList = styled.li`
   margin: 3px;
   padding: 6px;
   display: inline-block;
-  min-width: 376px;
+  min-width: 315px;
   background-color: #d3e5ed;
   a {
     text-decoration: none;

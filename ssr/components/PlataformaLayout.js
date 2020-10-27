@@ -93,6 +93,7 @@ const Contenido = styled.div`
   flex-direction: column;
   align-items: center;
   padding: 2rem 0;
+  max-width: 320px;
   min-height: calc(100vh - 120px);
   max-height: calc(100vh - 120px);
   overflow: scroll;
