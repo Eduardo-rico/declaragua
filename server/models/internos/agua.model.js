@@ -34,7 +34,7 @@ const AguaSchema = new mongoose.Schema({
   posiblesCompradores: [{ type: String }],
   createdAt: { type: Date, default: Date.now },
   observaciones: [{ type: String }],
-  vendeOcompra: Boolean,
+  vendeOcompra: { type: Boolean, default: false },
   creadoPor: { type: mongoose.Schema.Types.ObjectId, ref: "Usuario" },
 });
 
