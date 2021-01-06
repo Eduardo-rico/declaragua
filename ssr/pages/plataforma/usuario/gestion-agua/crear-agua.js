@@ -58,7 +58,6 @@ const Input = styled.input`
 const CrearAgua = () => {
   const [aguanueva, guardarAguaNueva] = useState({});
   const [checked, guardarChecked] = useState(false);
-  const [respuesta, guardarRespuesta] = useState({});
 
   const guardarAgua = (e) => {
     guardarChecked(!checked)
@@ -86,7 +85,6 @@ const CrearAgua = () => {
       if (res.status === 200) {
         Router.push('/plataforma/usuario/gestion-agua/agua');
       }
-      guardarRespuesta(res);
     } catch (error) {
       console.log(error);
       Router.push('/login');
@@ -103,14 +101,14 @@ const CrearAgua = () => {
         <Form onSubmit={enviarCliente}>
           <label>Volumen m3</label>
           <Input
-            type='number'
+            type='text'
             name='volumen'
             placeholder='10000'
             onChange={guardarAgua}
           />
           <label>Precio</label>
           <Input
-            type='number'
+            type='text'
             name='precio'
             placeholder='$10.50'
             onChange={guardarAgua}

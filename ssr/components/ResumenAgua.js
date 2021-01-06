@@ -54,6 +54,23 @@ const ResumenAgua = ({ dato }) => {
           borderColor: '#b4d0e0',
           padding: "5px",
         }}>Eliminar</button>
+        <button onClick={() => {
+          Router.push(
+            '/plataforma/usuario/gestion-agua/editar/[clienteId]',
+            `/plataforma/usuario/gestion-agua/editar/${dato._id}`
+          );
+        }} style={{
+          marginLeft: '10px',
+          display: 'block',
+          borderWidth: '1px',
+          borderRadius: '10%',
+          height: '30px',
+          backgroundColor: '#e64942',
+          cursor: 'pointer',
+          backgroundColor: 'yellow',
+          borderColor: '#b4d0e0',
+          padding: "5px",
+        }}>Editar</button>
       </div>
     </Div>
   );

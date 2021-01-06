@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const AguaSchema = new mongoose.Schema({
-  volumen: { type: Number },
+  volumen: { type: String },
   acuifero: {
     type: String,
     enum: [
