@@ -57,7 +57,7 @@ const EditarAgua = () => {
   useEffect(() => {
     const consultar = async () => {
       const tokenLocal = localStorage.getItem('token');
-      console.log(aguaId)
+      //console.log(aguaId)
       if (!tokenLocal) {
         Router.push('/login');
       } else {
@@ -69,10 +69,10 @@ const EditarAgua = () => {
           }
         });
         guardarCliente(res.data.Mensaje);
-        console.log(res);
+        //console.log(res);
         // console.log(router.query);
-        console.log(cliente);
-        console.log('volviendo a consultar en aguaId');
+        //console.log(cliente);
+        //console.log('volviendo a consultar en aguaId');
       }
     };
     consultar();
@@ -83,7 +83,7 @@ const EditarAgua = () => {
       ...cliente,
       [e.target.name]: e.target.value
     });
-    console.log(cliente);
+    //console.log(cliente);
   };
 
   const enviarCliente = async (e) => {
@@ -94,15 +94,15 @@ const EditarAgua = () => {
     }
     const res = await axios({
       method: 'PUT',
-      url: `${URL}/plataforma/agua/editar/${aguaId}`,
+      url: `${URL}/plataforma/agua/cambiar/${aguaId}`,
       headers: {
         Authorization: tokenLocal
       },
       data: cliente
     });
-    console.log(res);
+    console.log("Actualización enviada");
     if (res.status === 200) {
-      Router.push('/plataforma');
+      Router.push('/plataforma/usuario/gestion-agua/agua');
     } else if (res.status === 401) {
       Router.push('/login');
     }
@@ -111,18 +111,18 @@ const EditarAgua = () => {
 
   return (
     <PlataformaLayout>
-      <h2>EDIRAR {aguaId}</h2>
+      <h2>EDITAR {aguaId}</h2>
       <Contenedor>
         <Form onSubmit={enviarCliente}>
           <label>Nombre del que compra: </label>
           <Input
             type='text'
-            name='nombre'
-            value={cliente.nombre}
+            name='vendedor'
+            value={cliente.vendedor}
             onChange={guardarClienteForm}
           />
 
-          <select onChange={guardarClienteForm} defaultValue={cliente.acuifero} name='acuifero'>
+          <select onChange={guardarClienteForm} value={cliente.acuifero} name='acuifero'>
             <option value="No Especificado">No Especificado</option>
             <option value="Ciénega Prieta - Moroleón">Ciénega Prieta - Moroleón</option>
             <option value="Cuenca Alta del Río Laja">Cuenca Alta del Río Laja</option>
@@ -145,6 +145,20 @@ const EditarAgua = () => {
             <option value="Valle de Leon">Valle de Leon</option>
             <option value="Xichú - Atarjea">Xichú - Atarjea</option>
           </select>
+          <label>Precio </label>
+          <Input
+            type='text'
+            name='precio'
+            value={cliente.precio}
+            onChange={guardarClienteForm}
+          />
+          <label>Volumen </label>
+          <Input
+            type='text'
+            name='volumen'
+            value={cliente.volumen}
+            onChange={guardarClienteForm}
+          />
           <Botones>
             <BotonAceptar type='submit'>Guardar</BotonAceptar>
             <BotonCancelar
