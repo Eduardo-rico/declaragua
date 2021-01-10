@@ -49,22 +49,21 @@ const Botones = styled.div`
 
 const EditarAgua = () => {
   const router = useRouter();
-  const { editarId } = router.query;
+  const { aguaId } = router.query;
 
   const [cliente, guardarCliente] = useState({});
   const [respuesta, guardarRespuesta] = useState({});
-  const [token, guardarToken] = useState('');
 
   useEffect(() => {
     const consultar = async () => {
       const tokenLocal = localStorage.getItem('token');
-      guardarToken(tokenLocal);
+      console.log(aguaId)
       if (!tokenLocal) {
         Router.push('/login');
       } else {
         const res = await axios({
           method: 'GET',
-          url: `${URL}/plataforma/usuarios/${editarId}`,
+          url: `${URL}/plataforma/agua/${aguaId}`,
           headers: {
             authorization: tokenLocal
           }
@@ -73,7 +72,7 @@ const EditarAgua = () => {
         console.log(res);
         // console.log(router.query);
         console.log(cliente);
-        console.log('volviendo a consultar en editarId');
+        console.log('volviendo a consultar en aguaId');
       }
     };
     consultar();
@@ -95,7 +94,7 @@ const EditarAgua = () => {
     }
     const res = await axios({
       method: 'PUT',
-      url: `${URL}/plataforma/usuarios/${editarId}`,
+      url: `${URL}/plataforma/agua/editar/${aguaId}`,
       headers: {
         Authorization: tokenLocal
       },
@@ -112,72 +111,40 @@ const EditarAgua = () => {
 
   return (
     <PlataformaLayout>
-      <h2>EDIRAR {editarId}</h2>
+      <h2>EDIRAR {aguaId}</h2>
       <Contenedor>
         <Form onSubmit={enviarCliente}>
-          <label>Nombre: </label>
+          <label>Nombre del que compra: </label>
           <Input
             type='text'
             name='nombre'
             value={cliente.nombre}
             onChange={guardarClienteForm}
           />
-          <label>RFC: </label>
-          <Input
-            type='text'
-            name='rfc'
-            value={cliente.rfc}
-            onChange={guardarClienteForm}
-          />
-          <label>Fecha de entrega: </label>
-          <Input
-            type='date'
-            name='fechaMaxima'
-            value={cliente.fechaMaxima}
-            onChange={guardarClienteForm}
-          />
-          <label>Nombre de Conagua</label>
-          <Input
-            type='text'
-            name='nombreConagua'
-            value={cliente.nombreConagua}
-            onChange={guardarClienteForm}
-          />
-          <label>Contraseña de Conagua</label>
-          <Input
-            type='text'
-            name='passwordConagua'
-            value={cliente.passwordConagua}
-            onChange={guardarClienteForm}
-          />
-          <label>Numero de titulo:</label>
-          <Input
-            type='text'
-            name='numTitulo'
-            value={cliente.numTitulo}
-            onChange={guardarClienteForm}
-          />
-          <label>Numero de solicitud:</label>
-          <Input
-            type='text'
-            name='numSolicitud'
-            value={cliente.numSolicitud}
-            onChange={guardarClienteForm}
-          />
-          <label>Ciudad:</label>
-          <Input
-            type='text'
-            name='ciudad'
-            value={cliente.ciudad}
-            onChange={guardarClienteForm}
-          />
-          <label>Estatus: </label>
-          <Input
-            type='text'
-            name='estatus'
-            value={cliente.estatus}
-            onChange={guardarClienteForm}
-          />
+
+          <select onChange={guardarClienteForm} defaultValue={cliente.acuifero} name='acuifero'>
+            <option value="No Especificado">No Especificado</option>
+            <option value="Ciénega Prieta - Moroleón">Ciénega Prieta - Moroleón</option>
+            <option value="Cuenca Alta del Río Laja">Cuenca Alta del Río Laja</option>
+            <option value="Dr. Mora - San José Iturbide">Dr. Mora - San José Iturbide</option>
+            <option value="Irapuato - Valle">Irapuato - Valle</option>
+            <option value="Jaral de Berrios - Villa de Reyes">Jaral de Berrios - Villa de Reyes</option>
+            <option value="La Muralla">La Muralla</option>
+            <option value="Lago de Cuitzeo">Lago de Cuitzeo</option>
+            <option value="Laguna Seca">Laguna Seca</option>
+            <option value="Ocampo">Ocampo</option>
+            <option value="Pénjamo - Abasolo">Pénjamo - Abasolo</option>
+            <option value="Río Turbio">Río Turbio</option>
+            <option value="Salvatierra - Acambaro">Salvatierra - Acambaro</option>
+            <option value="San Miguel de Allende">San Miguel de Allende</option>
+            <option value="Santa María">Santa María</option>
+            <option value="Silao - Romita">Silao - Romita</option>
+            <option value="Valle de Acámbaro">Valle de Acámbaro</option>
+            <option value="Valle de Celaya">Valle de Celaya</option>
+            <option value="Valle de la Cuevita">Valle de la Cuevita</option>
+            <option value="Valle de Leon">Valle de Leon</option>
+            <option value="Xichú - Atarjea">Xichú - Atarjea</option>
+          </select>
           <Botones>
             <BotonAceptar type='submit'>Guardar</BotonAceptar>
             <BotonCancelar

@@ -56,7 +56,7 @@ const ResumenAgua = ({ dato }) => {
         }}>Eliminar</button>
         <button onClick={() => {
           Router.push(
-            '/plataforma/usuario/gestion-agua/editar/[clienteId]',
+            '/plataforma/usuario/gestion-agua/editar/[aguaId]',
             `/plataforma/usuario/gestion-agua/editar/${dato._id}`
           );
         }} style={{
