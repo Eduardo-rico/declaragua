@@ -37,7 +37,7 @@ const ResumenAgua = ({ dato }) => {
       <p>Nombre del que compra o vende: {dato.vendedor}</p>
       <p>Nombre del acuífero: {dato.acuifero}</p>
       <p>Precio: ${dato.precio}</p>
-      <p>Volúmen: {dato.precio} metros cúbicos</p>
+      <p>Volúmen: {dato.volumen} metros cúbicos</p>
       <p>Acción: {dato.vendeOcompra ? "vende" : "compra"}</p>
       <div style={{
         display: 'flex',
