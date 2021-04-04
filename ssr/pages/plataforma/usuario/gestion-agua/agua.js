@@ -9,8 +9,8 @@ import { URL } from '../../../../constantes/constantes';
 
 const Agua = () => {
 	const [aguas, guardarAguas] = useState([]);
-	const [aquifero, guardarAcuifero] = useState('');
-	const [vende, guardarVendeOCompra] = useState('');
+	const [aquifero, guardarAcuifero] = useState('todo');
+	const [vende, guardarVendeOCompra] = useState('Todos');
 
 	useEffect(() => {
 		const consultar = async () => {
@@ -40,7 +40,6 @@ const Agua = () => {
 
 	const cambiarVenta = (e) => {
 		guardarVendeOCompra(e.target.value);
-		console.log(vende);
 	};
 
 	return (
@@ -100,20 +99,18 @@ const Agua = () => {
 					</select>
 				</div>
 				{aguas.map((dato) => {
-					if (aquifero == 'todo') {
-						if (vende == 'Todos') {
-							return <ResumenAgua dato={dato} key={dato._id} />;
-						} else if (vende == 'compra' && dato.vendeOcompra == false) {
-							return <ResumenAgua dato={dato} key={dato._id} />;
-						} else if (vende == 'vende' && dato.vendeOcompra == true) {
+					if (aquifero == 'todo' && vende == 'Todos') {
+						return <ResumenAgua dato={dato} key={dato._id} />;
+					} else if (aquifero != 'todo' && vende == 'Todos') {
+						if (aquifero == dato.acuifero) {
 							return <ResumenAgua dato={dato} key={dato._id} />;
 						}
-					} else if (aquifero != 'todo') {
-						if (vende == 'Todos') {
+					} else if (vende == 'compra' && dato.vendeOcompra == false) {
+						if (aquifero == dato.acuifero) {
 							return <ResumenAgua dato={dato} key={dato._id} />;
-						} else if (vende == 'compra' && dato.vendeOcompra == false) {
-							return <ResumenAgua dato={dato} key={dato._id} />;
-						} else if (vende == 'vende' && dato.vendeOcompra == true) {
+						}
+					} else if (vende == 'vende' && dato.vendeOcompra == true) {
+						if (aquifero == dato.acuifero) {
 							return <ResumenAgua dato={dato} key={dato._id} />;
 						}
 					}
