@@ -63,6 +63,8 @@ const Cliente = () => {
 					url: `${URL}/plataforma/usuarios/${clienteId}`,
 					headers: {
 						Authorization: tokenLocal,
+						'Access-Control-Allow-Origin': '*',
+						'Content-Type': 'application/json',
 					},
 				});
 				if (clientes.status === 401) {
@@ -74,7 +76,11 @@ const Cliente = () => {
 				console.log('volviendo a consultar');
 			}
 		};
-		consultar();
+		try {
+			consultar();
+		} catch (error) {
+			console.log(error);
+		}
 	}, [cargando]);
 
 	const eliminarCliente = () => {
@@ -84,6 +90,8 @@ const Cliente = () => {
 				url: `${URL}/plataforma/usuarios/${clienteId}`,
 				headers: {
 					Authorization: token,
+					'Content-Type': 'application/json',
+					'Access-Control-Allow-Origin': '*',
 				},
 			});
 		};
@@ -123,6 +131,8 @@ const Cliente = () => {
 					},
 					headers: {
 						Authorization: token,
+						'Content-Type': 'application/json',
+						'Access-Control-Allow-Origin': '*',
 					},
 				});
 			} catch (error) {
@@ -144,6 +154,8 @@ const Cliente = () => {
 			url: `${URL}/plataforma/usuarios/eliminarNota/${id}/`,
 			headers: {
 				Authorization: token,
+				'Content-Type': 'application/json',
+				'Access-Control-Allow-Origin': '*',
 			},
 		});
 		guardarCargando(false);
@@ -197,6 +209,7 @@ const Cliente = () => {
 						{cliente.notas
 							? cliente.notas.map((n, i) => (
 									<div
+										key={`n.id${i}`}
 										style={{
 											display: 'flex',
 											justifyContent: 'space-between',

@@ -3,7 +3,7 @@ module.exports = {
 		return [
 			{
 				source: '*',
-				destination: 'http://api.ricosotomayor.com(*',
+				destination: 'http://api.ricosotomayor.com/*',
 			},
 		];
 	},

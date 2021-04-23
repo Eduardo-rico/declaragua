@@ -23,6 +23,7 @@ const Agua = () => {
 					url: `${URL}/plataforma/agua`,
 					headers: {
 						Authorization: tokenLocal,
+						'Access-Control-Allow-Origin': '*',
 					},
 				});
 				guardarAguas(aguas.data.Mensaje);
