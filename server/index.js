@@ -38,51 +38,18 @@ const port = 3001;
 //middlewares
 app.use(morgan('dev'));
 app.use(express.json());
-app.use(
-	cors({
-		'origin': '*',
-		'methods': 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
-		'preflightContinue': true,
-		'optionsSuccessStatus': 204,
-	})
-);
+const corsOptions = {
+	'origin': '*',
+	'methods': 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
+	'preflightContinue': true,
+	'optionsSuccessStatus': 204,
+};
+app.use(cors(corsOptions));
 
 //rutas
-app.options(
-	'*',
-	cors(
-		cors({
-			'origin': '*',
-			'methods': 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
-			'preflightContinue': true,
-			'optionsSuccessStatus': 204,
-		})
-	)
-);
-app.use(
-	'/',
-	cors(
-		cors({
-			'origin': '*',
-			'methods': 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
-			'preflightContinue': true,
-			'optionsSuccessStatus': 204,
-		})
-	),
-	usuarioRouter
-);
-app.use(
-	'/plataforma',
-	cors(
-		cors({
-			'origin': '*',
-			'methods': 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
-			'preflightContinue': true,
-			'optionsSuccessStatus': 204,
-		})
-	),
-	usuarioInternosRouter
-);
+app.options('*', cors(corsOptions));
+app.use('/', cors(corsOptions), usuarioRouter);
+app.use('/plataforma', cors(corsOptions), usuarioInternosRouter);
 
 //listen
 
