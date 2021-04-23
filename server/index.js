@@ -34,19 +34,19 @@ const port = 3001;
 
 //middlewares
 app.use(express.json());
-// app.use(
-// 	cors({
-// 		'origin': 'http://api.ricosotomayor.com',
-// 		'methods': 'GET,HEAD,PUT,PATCH,POST,DELETE',
-// 		'preflightContinue': false,
-// 		'optionsSuccessStatus': 204,
-// 	})
-// );
+app.use(
+	cors({
+		'origin': 'http://api.ricosotomayor.com',
+		'methods': 'GET,HEAD,PUT,PATCH,POST,DELETE',
+		'preflightContinue': ture,
+		'optionsSuccessStatus': 204,
+	})
+);
 
 //rutas
 
-app.use('/', cors(), usuarioRouter);
-app.use('/plataforma', cors(), usuarioInternosRouter);
+app.use('/', usuarioRouter);
+app.use('/plataforma', usuarioInternosRouter);
 
 //listen
 
