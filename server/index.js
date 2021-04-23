@@ -38,9 +38,9 @@ const port = 3001;
 app.use(express.json());
 app.use(
 	cors({
-		'origin': 'http://api.ricosotomayor.com',
+		'origin': '*',
 		'methods': 'GET,HEAD,PUT,PATCH,POST,DELETE',
-		'preflightContinue': true,
+		'preflightContinue': false,
 		'optionsSuccessStatus': 204,
 	})
 );
