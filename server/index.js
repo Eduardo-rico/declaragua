@@ -22,7 +22,9 @@ mongoose.connect(
 		console.log('db conectada');
 		app.listen(port, () => {
 			console.log(`Servidor arriba en http://localhost:${port}/`);
-			console.log(`La fecha: ${Date.now()}`);
+			const timeElapsed = Date.now();
+			const today = new Date(timeElapsed);
+			console.log(`La fecha: ${today.toUTCString()}`);
 		});
 	}
 );
@@ -38,7 +40,7 @@ app.use(
 	cors({
 		'origin': 'http://api.ricosotomayor.com',
 		'methods': 'GET,HEAD,PUT,PATCH,POST,DELETE',
-		'preflightContinue': ture,
+		'preflightContinue': true,
 		'optionsSuccessStatus': 204,
 	})
 );
