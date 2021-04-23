@@ -35,24 +35,12 @@ const port = 3001;
 app.use(express.json());
 app.use(
 	cors({
-		'origin': '*',
+		'origin': ture,
 		'methods': 'GET,HEAD,PUT,PATCH,POST,DELETE',
 		'preflightContinue': false,
 		'optionsSuccessStatus': 420,
 	})
 );
-
-app.use(function (req, res, next) {
-
-  // Website you wish to allow to connect
-  res.setHeader('Access-Control-Allow-Origin', 'http://*.167.172.220.87');
-
-  // Request methods you wish to allow
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-
-  // Pass to next layer of middleware
-  next();
-});
 
 app.options('*', cors());
 //rutas
