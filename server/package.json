@@ -17,6 +17,7 @@
     "mongo"
   ],
   "author": "Eduardo-rico",
+  "proxy": "api.ricosotomayor.com"
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/Eduardo-rico/declaragua/issues"
