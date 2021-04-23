@@ -48,7 +48,6 @@ app.use(
 );
 
 //rutas
-app.options('*', cors());
 app.use('/', usuarioRouter);
 app.use('/plataforma', usuarioInternosRouter);
 
