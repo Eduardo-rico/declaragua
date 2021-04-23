@@ -3,6 +3,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const morgan = require('morgan');
 require('dotenv').config();
 
 //Dependencias internas
@@ -35,6 +36,7 @@ const app = express();
 const port = 3001;
 
 //middlewares
+app.use(morgan('tiny'));
 app.use(express.json());
 app.use(
 	cors({
