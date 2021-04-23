@@ -22,6 +22,7 @@ mongoose.connect(
 		console.log('db conectada');
 		app.listen(port, () => {
 			console.log(`Servidor arriba en http://localhost:${port}/`);
+			console.log(`La fecha: ${Date.now()}`);
 		});
 	}
 );
