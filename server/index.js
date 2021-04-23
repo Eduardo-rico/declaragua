@@ -48,9 +48,41 @@ app.use(
 );
 
 //rutas
-app.options('/', cors());
-app.use('/', cors(), usuarioRouter);
-app.use('/plataforma', cors(), usuarioInternosRouter);
+app.options(
+	'*',
+	cors(
+		cors({
+			'origin': '*',
+			'methods': 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
+			'preflightContinue': true,
+			'optionsSuccessStatus': 204,
+		})
+	)
+);
+app.use(
+	'/',
+	cors(
+		cors({
+			'origin': '*',
+			'methods': 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
+			'preflightContinue': true,
+			'optionsSuccessStatus': 204,
+		})
+	),
+	usuarioRouter
+);
+app.use(
+	'/plataforma',
+	cors(
+		cors({
+			'origin': '*',
+			'methods': 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
+			'preflightContinue': true,
+			'optionsSuccessStatus': 204,
+		})
+	),
+	usuarioInternosRouter
+);
 
 //listen
 
