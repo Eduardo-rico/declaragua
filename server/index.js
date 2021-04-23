@@ -33,18 +33,9 @@ const port = 3001;
 
 //middlewares
 app.use(express.json());
-app.use(
-	cors({
-		'origin': ture,
-		'methods': 'GET,HEAD,PUT,PATCH,POST,DELETE',
-		'preflightContinue': false,
-		'optionsSuccessStatus': 420,
-	})
-);
+app.use(cors());
 
-app.options('*', cors());
 //rutas
-
 app.use('/', usuarioRouter);
 app.use('/plataforma', usuarioInternosRouter);
 
