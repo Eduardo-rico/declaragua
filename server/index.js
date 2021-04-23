@@ -11,14 +11,19 @@ const usuarioInternosRouter = require('./routes/usuariosInternos.routes');
 
 //inicializaciones
 mongoose.connect(
-  process.env.MONGODB_URI,
-  { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false },
-  () => {
-    console.log('db conectada');
-    app.listen(port, () => {
-      console.log(`Servidor arriba en http://localhost:${port}/`);
-    });
-  }
+	process.env.MONGODB_URI,
+	{
+		useNewUrlParser: true,
+		useUnifiedTopology: true,
+		useFindAndModify: false,
+		useCreateIndex: true,
+	},
+	() => {
+		console.log('db conectada');
+		app.listen(port, () => {
+			console.log(`Servidor arriba en http://localhost:${port}/`);
+		});
+	}
 );
 
 const app = express();
@@ -38,5 +43,5 @@ app.use('/plataforma', usuarioInternosRouter);
 
 app.use(express.static(__dirname + '/public'));
 app.get('/', (req, res) => {
-  res.sendFile(__dirname + 'index.html');
+	res.sendFile(__dirname + 'index.html');
 });
