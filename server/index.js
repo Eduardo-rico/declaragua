@@ -46,7 +46,9 @@ app.use(
 );
 
 //rutas
-
+app.use('*', (req, res) => {
+	req.header(('Access-Control-Allow-Origin': '*'));
+});
 app.use('/', usuarioRouter);
 app.use('/plataforma', usuarioInternosRouter);
 
