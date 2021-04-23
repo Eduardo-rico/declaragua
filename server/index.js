@@ -32,8 +32,9 @@ const app = express();
 const port = 3001;
 
 //middlewares
-app.use(bodyParser.json());
+app.use(express.json());
 app.use(cors());
+app.options('*', cors());
 //rutas
 
 app.use('/', usuarioRouter);
