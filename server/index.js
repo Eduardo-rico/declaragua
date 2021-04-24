@@ -42,7 +42,8 @@ app.use(express.json());
 app.use(helmet());
 app.use(
 	cors({
-		origin: 'api.ricosotomayor.com/*',
+		origin: 'api.ricosotomayor.com',
+		methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE', 'OPTIONS'],
 	})
 );
 //rutas
