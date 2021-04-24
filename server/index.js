@@ -42,7 +42,7 @@ app.use(express.json());
 app.use(helmet());
 app.use(
 	cors({
-		origin: 'http://api.ricosotomayor.com/*',
+		origin: '*',
 		methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE', 'OPTIONS'],
 	})
 );
