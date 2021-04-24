@@ -40,6 +40,7 @@ app.use(morgan('dev'));
 app.use(express.json());
 app.use(cors());
 //rutas
+app.options('*', cors());
 app.use('/', usuarioRouter);
 app.use('/plataforma', usuarioInternosRouter);
 
