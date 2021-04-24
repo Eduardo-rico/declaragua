@@ -34,14 +34,13 @@ const app = express();
 
 //constantes
 const port = 3001;
-const corsOptions = { origin: false };
 
 //middlewares
 app.use(morgan('dev'));
 app.use(express.json());
-app.use(cors(corsOptions));
+app.use(cors());
+
 //rutas
-app.options('*', cors(corsOptions));
 app.use('/', usuarioRouter);
 app.use('/plataforma', usuarioInternosRouter);
 

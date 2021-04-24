@@ -1,5 +1,4 @@
 const express = require('express');
-const cors = require('cors');
 const router = express.Router();
 
 const auth = require('../helpers/autenticar');
@@ -16,20 +15,10 @@ const {
 	eliminarNotadelCliente,
 } = require('../controllers/usuariosInternos.controller');
 
-router.options('/login', cors());
-router.options('/usuarios', cors());
-router.options('/usuarios/:clienteId', cors());
-router.options('/usuarios/nuevo', cors());
-router.options('/usuarios/:clienteId', cors());
-router.options('/usuarios/agregarNota/:clienteId', cors());
-router.options('/usuarios/eliminarNota/:notaId', cors());
-router.options('/usuarios/:clienteId', cors());
-
-//ruta de login
 router.post('/login', login).post('/nuevoUsuario', nuevoUsuario);
-// rutas de control de usuarios
+
 router.route('/usuarios').get(auth, mostrarClientes);
-router.route('/usuarios/:clienteId').options(cors()).get(auth, mostrarCliente);
+router.route('/usuarios/:clienteId').get(auth, mostrarCliente);
 router.route('/usuarios/nuevo').post(auth, agregarCliente);
 router.route('/usuarios/:clienteId').put(auth, modificarCliente);
 router
@@ -47,14 +36,7 @@ const {
 	nuevaAgua,
 	borrarAgua,
 } = require('../controllers/agua.controller');
-
 //usuarios compra-venta de agua
-router.options('/agua', cors());
-router.options('/agua/:idAgua', cors());
-router.options('/agua/cambiar/:idAgua', cors());
-router.options('/agua/crear', cors());
-router.options('/agua/borrar/:idAgua', cors());
-
 router.get('/agua', auth, mostrarAguas);
 router.get('/agua/:idAgua', auth, mostrarAgua);
 router.put('/agua/cambiar/:idAgua', auth, cambiarAgua);

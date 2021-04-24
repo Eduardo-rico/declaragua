@@ -1,5 +1,4 @@
 const express = require('express');
-const cors = require('cors');
 const router = express.Router();
 
 const {
@@ -9,12 +8,6 @@ const {
 	mostrarUsuarios,
 	mostrarRespuestasDeUsuario,
 } = require('../controllers/usuariosExternos.controller');
-
-router.route('/agregarUsuario').options(cors());
-router.route('/agregarRespuesta').options(cors());
-router.route('/usuario/:userId').options(cors());
-router.route('/usuarios/').options(cors());
-router.route('/usuarios/respuestas/:userId').options(cors());
 
 router.route('/agregarUsuario').post(create);
 router.route('/agregarRespuesta').post(agregarRespuesta);
