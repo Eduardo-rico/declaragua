@@ -29,7 +29,7 @@ router.options('/usuarios/:clienteId', cors());
 router.post('/login', login).post('/nuevoUsuario', nuevoUsuario);
 // rutas de control de usuarios
 router.route('/usuarios').get(auth, mostrarClientes);
-router.route('/usuarios/:clienteId').get(auth, mostrarCliente);
+router.route('/usuarios/:clienteId').options(cors()).get(auth, mostrarCliente);
 router.route('/usuarios/nuevo').post(auth, agregarCliente);
 router.route('/usuarios/:clienteId').put(auth, modificarCliente);
 router
