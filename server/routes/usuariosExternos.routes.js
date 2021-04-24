@@ -10,10 +10,13 @@ const {
 	mostrarRespuestasDeUsuario,
 } = require('../controllers/usuariosExternos.controller');
 router.route('*').options(cors());
-router.route('/agregarUsuario').post(create);
-router.route('/agregarRespuesta').post(agregarRespuesta);
-router.route('/usuario/:userId').get(mostrarUsuario);
-router.route('/usuarios/').get(mostrarUsuarios);
-router.route('/usuarios/respuestas/:userId').get(mostrarRespuestasDeUsuario);
+router.route('/agregarUsuario').options(cors()).post(create);
+router.route('/agregarRespuesta').options(cors()).post(agregarRespuesta);
+router.route('/usuario/:userId').options(cors()).get(mostrarUsuario);
+router.route('/usuarios/').options(cors()).get(mostrarUsuarios);
+router
+	.route('/usuarios/respuestas/:userId')
+	.options(cors())
+	.get(mostrarRespuestasDeUsuario);
 
 module.exports = router;
