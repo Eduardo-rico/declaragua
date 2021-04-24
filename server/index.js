@@ -38,33 +38,7 @@ const port = 3001;
 //middlewares
 app.use(morgan('dev'));
 app.use(express.json());
-
-app.use((req, res, next) => {
-	res.header('Access-Control-Allow-Origin', '*');
-	res.header(
-		'Access-Control-Allow-Methods',
-		'GET,POST,PUT,PATCH,DELETE,OPTIONS'
-	);
-	res.header(
-		'Access-Control-Allow-Headers',
-		'Origin,X-Requested-With,Content-Type,Accept,Access-Control-Allow-Origin,authorization'
-	);
-	console.log(req.headers);
-	next();
-});
-app.options('*', (req, res, next) => {
-	res.header('Access-Control-Allow-Origin', '*');
-	res.header(
-		'Access-Control-Allow-Methods',
-		'GET,POST,PUT,PATCH,DELETE,OPTIONS'
-	);
-	res.header(
-		'Access-Control-Allow-Headers',
-		'Origin,X-Requested-With,Content-Type,Accept,Access-Control-Allow-Origin,authorization'
-	);
-	console.log(req.headers);
-	next();
-});
+app.use(cors());
 //rutas
 app.use('/', usuarioRouter);
 app.use('/plataforma', usuarioInternosRouter);
