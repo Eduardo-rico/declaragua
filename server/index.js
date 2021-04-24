@@ -38,18 +38,23 @@ const port = 3001;
 //middlewares
 app.use(morgan('dev'));
 app.use(express.json());
-const corsOptions = {
-	'origin': '*',
-	'methods': 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
-	'preflightContinue': true,
-	'optionsSuccessStatus': 204,
-};
-app.use(cors(corsOptions));
+
+app.use((req, res, next) => {
+	res.header('Access-Control-Allow-Origin', '*');
+	res.header(
+		'Access-Control-Allow-Methods',
+		'GET,POST,PUT,PATCH,DELETE,OPTIONS'
+	);
+	res.header(
+		'Access-Control-Allow-Headers',
+		'Origin, X-Requested-With, Content-Type, Accept'
+	);
+	next();
+});
 
 //rutas
-app.options('*', cors(corsOptions));
-app.use('/', cors(corsOptions), usuarioRouter);
-app.use('/plataforma', cors(corsOptions), usuarioInternosRouter);
+app.use('/', usuarioRouter);
+app.use('/plataforma', usuarioInternosRouter);
 
 //listen
 
