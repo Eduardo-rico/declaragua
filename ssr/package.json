@@ -1,25 +1,25 @@
 {
-  "name": "ssr",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start"
-  },
-  "dependencies": {
-    "@emotion/core": "^10.0.28",
-    "@emotion/styled": "^10.0.27",
-    "@fortawesome/fontawesome-svg-core": "^1.2.30",
-    "@fortawesome/free-brands-svg-icons": "^5.14.0",
-    "@fortawesome/free-solid-svg-icons": "^5.14.0",
-    "@fortawesome/react-fontawesome": "^0.1.11",
-    "axios": "0.19.2",
-    "moment": "^2.26.0",
-    "next": "^9.4.4",
-    "react": "16.13.1",
-    "react-dom": "16.13.1",
-    "styled-components": "^5.1.1",
-    "sweetalert": "^2.1.2"
-  }
+	"name": "ssr",
+	"version": "0.1.0",
+	"private": true,
+	"scripts": {
+		"dev": "next dev",
+		"build": "next build",
+		"start": "next start"
+	},
+	"dependencies": {
+		"@emotion/react": "^10.0.28",
+		"@emotion/styled": "^10.0.27",
+		"@fortawesome/fontawesome-svg-core": "^1.2.30",
+		"@fortawesome/free-brands-svg-icons": "^5.14.0",
+		"@fortawesome/free-solid-svg-icons": "^5.14.0",
+		"@fortawesome/react-fontawesome": "^0.1.11",
+		"axios": "0.19.2",
+		"moment": "^2.26.0",
+		"next": "^9.4.4",
+		"react": "16.13.1",
+		"react-dom": "16.13.1",
+		"styled-components": "^5.1.1",
+		"sweetalert": "^2.1.2"
+	}
 }
