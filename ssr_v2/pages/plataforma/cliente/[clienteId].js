@@ -41,47 +41,12 @@ const Boton = styled.button`
 	}
 `;
 
-const Cliente = () => {
+const Cliente = ({ cliente, clienteId }) => {
 	const router = useRouter();
-	const { clienteId } = router.query;
 
-	const [cliente, guardarCliente] = useState({});
 	const [token, guardarToken] = useState('');
 	const [cargando, guardarCargando] = useState(true);
 	const [notanueva, guardarNotaNueva] = useState('');
-
-	useEffect(() => {
-		const consultar = async () => {
-			const tokenLocal = localStorage.getItem('token');
-			guardarToken(tokenLocal);
-			if (!tokenLocal) {
-				Router.push('/login');
-			} else {
-				guardarCargando(true);
-				const clientes = await axios({
-					method: 'GET',
-					url: `${URL}/plataforma/usuarios/${clienteId}`,
-					headers: {
-						Authorization: tokenLocal,
-						'Access-Control-Allow-Origin': '*',
-						'Content-Type': 'application/json',
-					},
-				});
-				if (clientes.status === 401) {
-					Router.push('/login');
-				}
-				guardarCliente(clientes.data.Mensaje);
-
-				// console.log(clientes.data.Mensaje);
-				console.log('volviendo a consultar');
-			}
-		};
-		try {
-			consultar();
-		} catch (error) {
-			console.log(error);
-		}
-	}, [cargando]);
 
 	const eliminarCliente = () => {
 		const eliminar = async () => {
@@ -300,6 +265,21 @@ const Cliente = () => {
 			</Link>
 		</PlataformaLayout>
 	);
+};
+
+Cliente.getInitialProps = async ({ query }) => {
+	const { clienteId } = query;
+	const tokenLocal = localStorage.getItem('token');
+	if (!tokenLocal) {
+		Router.push('/login');
+	}
+	const datos = await fetch(`${URL}/plataforma/usuarios/${clienteId}`, {
+		method: 'GET',
+		headers: { 'Authorization': tokenLocal },
+	});
+	const cliente = await datos.json();
+	console.log(cliente.Mensaje);
+	return { cliente: cliente.Mensaje, clienteId };
 };
 
 export default Cliente;
