@@ -33,7 +33,7 @@ const Agua = () => {
 			}
 		};
 		consultar();
-	}, []);
+	}, [aguas]);
 
 	const cambiarAquifero = (e) => {
 		guardarAcuifero(e.target.value);
