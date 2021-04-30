@@ -14,7 +14,7 @@ const TarjetaUsuario = styled.div`
 const InputBusqueda = styled.input`
 	margin-top: 2rem;
 	min-width: 315px;
-	min-height: 40px;
+	min-height: 41px;
 	border: none;
 	border-bottom: 2px solid black;
 	:hover {
@@ -54,8 +54,9 @@ const Body = () => {
 	const buscar = (e) => {
 		guardarBusqueda(e.target.value);
 		const nombresFiltrados = usuarios.filter((obj) => {
-			const nombre = obj.nombre;
-			return nombre?.toLowerCase().includes(busqueda.toLowerCase());
+			console.log(obj.nombre);
+			const nombre = obj.nombre.toLowerCase();
+			return nombre?.includes(busqueda.toLowerCase());
 		});
 		guardarClientesBusqueda(nombresFiltrados);
 	};
