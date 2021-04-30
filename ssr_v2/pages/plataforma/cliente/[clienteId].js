@@ -252,14 +252,6 @@ const Cliente = ({ cliente, clienteId }) => {
 					</Botones>
 				</div>
 			</Contenedor>
-			{/* <Link
-        href='/plataforma/editar/[editarId]'
-        as={`/plataforma/editar/${cliente._id}`}
-        
-      >
-        <a>Editar cliente</a>
-      </Link> */}
-
 			<Link href="/plataforma">
 				<a>Regresar a tus usuarios</a>
 			</Link>
@@ -267,7 +259,7 @@ const Cliente = ({ cliente, clienteId }) => {
 	);
 };
 
-Cliente.getInitialProps = async ({ query }) => {
+Cliente.getStaticProps = async ({ query }) => {
 	const { clienteId } = query;
 	const tokenLocal = localStorage.getItem('token');
 	if (!tokenLocal) {
