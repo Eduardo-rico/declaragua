@@ -54,9 +54,12 @@ const Body = () => {
 	const buscar = (e) => {
 		guardarBusqueda(e.target.value);
 		const nombresFiltrados = usuarios.filter((obj) => {
-			console.log(obj.nombre);
-			const nombre = obj.nombre.toLowerCase();
-			return nombre?.includes(busqueda.toLowerCase());
+			const nombre = obj.nombre;
+			if (typeof nombre == 'string') {
+				return nombre
+					.toLocaleLowerCase()
+					.includes(busqueda.toLocaleLowerCase());
+			}
 		});
 		guardarClientesBusqueda(nombresFiltrados);
 	};
