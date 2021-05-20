@@ -1,4 +1,4 @@
-const URL = 'http://api.ricosotomayor.com';
+const URL = 'https://api.ricosotomayor.com';
 
 module.exports = {
 	URL,
