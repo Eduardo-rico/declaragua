@@ -37,7 +37,7 @@ const Body = () => {
 		const token = localStorage.getItem('token');
 		try {
 			const respuesta = await Axios.get(
-				'http://api.ricosotomayor.com/plataforma/usuarios',
+				'https://api.ricosotomayor.com/plataforma/usuarios',
 				{
 					headers: {
 						'Authorization': `Basic ${token}`,

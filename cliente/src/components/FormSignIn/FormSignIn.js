@@ -24,7 +24,7 @@ const FormSignIn = () => {
 		e.preventDefault();
 		try {
 			const respuesta = await Axios.post(
-				'http://api.ricosotomayor.com/plataforma/login',
+				'https://api.ricosotomayor.com/plataforma/login',
 				{
 					'email': usuario.email,
 					'password': usuario.password,
