@@ -36,7 +36,7 @@ const app = express();
 const port = 3001;
 
 //middlewares
-app.use(morgan());
+app.use(morgan('combined'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }))
 
