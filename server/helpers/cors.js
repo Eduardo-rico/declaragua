@@ -1,6 +1,6 @@
 //cors.js
-const express = require(‘express’);
-const cors = require(‘cors’);
+const express = require('express');
+const cors = require('cors');
 const app = express();
 const allowedOrigins= [`https://ricosotomayor.com`, `https://api.ricosotomayor.com`];
 var corsOptionsDelegate = (req, callback) => {
