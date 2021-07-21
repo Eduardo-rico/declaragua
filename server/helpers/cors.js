@@ -1,8 +1,18 @@
-const corsMiddleware = (req, res, next) => {
-	res.header("Access-Control-Allow-Origin", "https://ricosotomayor.com");
-	res.header("Access-Control-Allow-Methods", "GET,HEAD,PATCH,POST,PUTS,OPTIONS");
-	res.header("Access-Control-Allow-Headers", "X-Requested-With");
-	next();
-  }
-
-module.exports = corsMiddleware
+//cors.js
+const express = require(‘express’);
+const cors = require(‘cors’);
+const app = express();
+const allowedOrigins= [`https://ricosotomayor.com`, `https://api.ricosotomayor.com`];
+var corsOptionsDelegate = (req, callback) => {
+var corsOptions;
+console.log(req.header(`Origin`));
+if(allowedOrigins.indexOf(req.header(`Origin`)) !== -1) {
+corsOptions = { origin: true };
+}
+else {
+corsOptions = { origin: false };
+}
+callback(null, corsOptions);
+};
+exports.cors = cors();
+exports.corsWithOptions = cors(corsOptionsDelegate);

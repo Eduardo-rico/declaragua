@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 const auth = require('../helpers/autenticar');
-const cors = require('cors');
+const cors = require('../helpers/cors');
 
 const {
 	login,
@@ -17,17 +17,17 @@ const {
 } = require('../controllers/usuariosInternos.controller');
 
 router.post('/login', login).post('/nuevoUsuario', nuevoUsuario);
-router.route('/usuarios').options(cors(),(req, res) => {return res.header['Access-Control-Allow-Origin'] = "https://ricosotomayor.com"});
-router.route('/usuarios').get(cors(), auth, mostrarClientes);
-router.route('/usuarios/:clienteId').get(auth, mostrarCliente);
-router.route('/usuarios/nuevo').post(auth, agregarCliente);
-router.route('/usuarios/:clienteId').put(auth, modificarCliente);
+router.route('/usuarios').options(cors.corsWithOptions, (req, res) => {res.sendStatus(200);})
+router.route('/usuarios').get(cors.corsWithOptions, auth, mostrarClientes);
+router.route('/usuarios/:clienteId').get(cors.corsWithOptions, auth, mostrarCliente);
+router.route('/usuarios/nuevo').post(cors.corsWithOptions, auth, agregarCliente);
+router.route('/usuarios/:clienteId').put(cors.corsWithOptions, auth, modificarCliente);
 router
 	.route('/usuarios/agregarNota/:clienteId')
-	.put(auth, agregarNotaAlCliente);
+	.put(cors.corsWithOptions, auth, agregarNotaAlCliente);
 router
 	.route('/usuarios/eliminarNota/:notaId')
-	.delete(auth, eliminarNotadelCliente);
+	.delete(cors.corsWithOptions, auth, eliminarNotadelCliente);
 router.route('/usuarios/:clienteId').delete(auth, eliminarCliente);
 
 const {
@@ -38,11 +38,11 @@ const {
 	borrarAgua,
 } = require('../controllers/agua.controller');
 //usuarios compra-venta de agua
-router.get('/agua', auth, mostrarAguas);
-router.get('/agua/:idAgua', auth, mostrarAgua);
-router.put('/agua/cambiar/:idAgua', auth, cambiarAgua);
-router.post('/agua/crear', auth, nuevaAgua);
-router.delete('/agua/borrar/:idAgua', auth, borrarAgua);
+router.get('/agua',cors.corsWithOptions, auth, mostrarAguas);
+router.get('/agua/:idAgua',cors.corsWithOptions, auth, mostrarAgua);
+router.put('/agua/cambiar/:idAgua',cors.corsWithOptions, auth, cambiarAgua);
+router.post('/agua/crear',cors.corsWithOptions, auth, nuevaAgua);
+router.delete('/agua/borrar/:idAgua',cors.corsWithOptions, auth, borrarAgua);
 
 /**
  * put, patch, delete, get usr/id
