@@ -16,7 +16,7 @@ const FormSignIn = () => {
 	useEffect(() => {
 		const token = localStorage.getItem('token');
 		if (token) {
-			history.push('/plataforma');
+			history.push('/plat');
 		}
 	}, []);
 
@@ -31,7 +31,7 @@ const FormSignIn = () => {
 				}
 			);
 			localStorage.setItem('token', respuesta.data.token);
-			history.push('/plataforma');
+			history.push('/plat');
 		} catch (error) {
 			console.log(error);
 		}
