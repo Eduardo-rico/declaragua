@@ -18,25 +18,25 @@ const {
 router.post('/login', login).post('/nuevoUsuario', nuevoUsuario);
 
 router.route('/usuarios').get(cors({
-  "origin": "*",
+  "origin": "https://ricosotomayor.com",
   "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
   "preflightContinue": false,
   "optionsSuccessStatus": 204
 }), auth, mostrarClientes);
 router.route('/usuarios/:clienteId').get(cors({
-  "origin": "*",
+  "origin": "https://ricosotomayor.com",
   "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
   "preflightContinue": false,
   "optionsSuccessStatus": 204
 }), auth, mostrarCliente);
 router.route('/usuarios/nuevo').post(cors({
-  "origin": "*",
+  "origin": "https://ricosotomayor.com",
   "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
   "preflightContinue": false,
   "optionsSuccessStatus": 204
 }), auth, agregarCliente);
 router.route('/usuarios/:clienteId').put(cors({
-  "origin": "*",
+  "origin": "https://ricosotomayor.com",
   "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
   "preflightContinue": false,
   "optionsSuccessStatus": 204
@@ -44,7 +44,7 @@ router.route('/usuarios/:clienteId').put(cors({
 router
 	.route('/usuarios/agregarNota/:clienteId')
 	.put(cors({
-  "origin": "*",
+  "origin": "https://ricosotomayor.com",
   "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
   "preflightContinue": false,
   "optionsSuccessStatus": 204
@@ -52,13 +52,13 @@ router
 router
 	.route('/usuarios/eliminarNota/:notaId')
 	.delete(cors({
-  "origin": "*",
+  "origin": "https://ricosotomayor.com",
   "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
   "preflightContinue": false,
   "optionsSuccessStatus": 204
 }), auth, eliminarNotadelCliente);
 router.route('/usuarios/:clienteId').delete(cors({
-  "origin": "*",
+  "origin": "https://ricosotomayor.com",
   "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
   "preflightContinue": false,
   "optionsSuccessStatus": 204
@@ -73,38 +73,38 @@ const {
 } = require('../controllers/agua.controller');
 //usuarios compra-venta de agua
 router.get('/agua',cors({
-  "origin": "*",
+  "origin": "https://ricosotomayor.com",
   "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
   "preflightContinue": false,
   "optionsSuccessStatus": 204
 }),  auth, mostrarAguas);
 router.get('/agua/:idAgua',cors({
-  "origin": "*",
+  "origin": "https://ricosotomayor.com",
   "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
   "preflightContinue": false,
   "optionsSuccessStatus": 204
 }),  auth, mostrarAgua);
 router.put('/agua/cambiar/:idAgua',cors({
-  "origin": "*",
+  "origin": "https://ricosotomayor.com",
   "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
   "preflightContinue": false,
   "optionsSuccessStatus": 204
 }),  auth, cambiarAgua);
 router.post('/agua/crear',cors({
-  "origin": "*",
+  "origin": "https://ricosotomayor.com",
   "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
   "preflightContinue": false,
   "optionsSuccessStatus": 204
 }),  auth, nuevaAgua);
 router.delete('/agua/borrar/:idAgua',cors({
-  "origin": "*",
+  "origin": "https://ricosotomayor.com",
   "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
   "preflightContinue": false,
   "optionsSuccessStatus": 204
 }),  auth, borrarAgua);
 
 router.options(cors({
-  "origin": "*",
+  "origin": "https://ricosotomayor.com",
   "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
   "preflightContinue": false,
   "optionsSuccessStatus": 204
