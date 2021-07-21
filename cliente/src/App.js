@@ -1,3 +1,4 @@
+import React from 'react'
 import styled from 'styled-components';
 import FormSignIn from './components/FormSignIn/FormSignIn';
 import GlobalStyle from './components/GlobalStyle/GlobalStyle';

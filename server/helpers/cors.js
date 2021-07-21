@@ -2,7 +2,7 @@
 const express = require('express');
 const cors = require('cors');
 const app = express();
-const allowedOrigins= [`https://ricosotomayor.com`, `https://api.ricosotomayor.com`];
+const allowedOrigins= [`https://ricosotomayor.com`, `https://api.ricosotomayor.com`, 'http://localhost:3000'];
 var corsOptionsDelegate = (req, callback) => {
 var corsOptions;
 console.log(req.header(`Origin`));
