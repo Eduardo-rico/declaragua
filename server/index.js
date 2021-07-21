@@ -41,14 +41,15 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }))
 
 // use it before all route definitions
-app.all('/*',function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "https://ricosotomayor.com");
-  res.header("Access-Control-Allow-Methods", "GET,HEAD,PATCH,POST,PUTS");
-  res.header("Access-Control-Allow-Headers", "X-Requested-With");
-  next();
-});
+// app.all('/*',function(req, res, next) {
+//   res.header("Access-Control-Allow-Origin", "https://ricosotomayor.com");
+//   res.header("Access-Control-Allow-Methods", "GET,HEAD,PATCH,POST,PUTS, OPTIONS");
+//   res.header("Access-Control-Allow-Headers", "X-Requested-With");
+//   next();
+// });
+app.use(cors())
 app.options('*', cors())
-app.use('/',usuarioRouter);
+app.use('/', usuarioRouter);
 app.use('/plataforma', usuarioInternosRouter);
 
 //listen
