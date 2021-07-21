@@ -53,7 +53,7 @@ app.use('/', usuarioRouter);
 app.use('/plataforma', usuarioInternosRouter);
 
 //listen
-app.use(express.static(__dirname + '/public'));
+app.use(express.static(__dirname + '/build'));
 app.get('/', (req, res) => {
         res.sendFile(__dirname + 'index.html');
 });
