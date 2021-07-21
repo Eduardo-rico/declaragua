@@ -39,19 +39,22 @@ const port = 3001;
 //middlewares
 app.use(morgan('dev'));
 app.use(express.json());
-app.use(helmet());
-app.use(
-	cors({
-		origin: '*',
-		methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE', 'OPTIONS'],
-	})
-);
-//rutas
-app.use('/', usuarioRouter);
+// use it before all route definitions
+app.use(bodyParser.urlencoded({ extended: true }))
+
+// parse application/json
+app.use(bodyParser.json())
+app.all('/*',function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "https://ricosotomayor.com");
+  res.header("Access-Control-Allow-Methods", "GET,HEAD,PATCH,POST,PUTS");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  next();
+});
+app.options('*', cors())
+app.use('/',usuarioRouter);
 app.use('/plataforma', usuarioInternosRouter);
 
 //listen
-
 app.use(express.static(__dirname + '/public'));
 app.get('/', (req, res) => {
 	res.sendFile(__dirname + 'index.html');
