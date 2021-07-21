@@ -18,7 +18,7 @@ function App() {
 				<GlobalStyle />
 				<Switch>
 					<Route exact path="/" component={FormSignIn} />
-					<Route exact path="/plataforma" component={Body} />
+					<Route exact path="/plat" component={Body} />
 				</Switch>
 			</Container>
 		</Router>
