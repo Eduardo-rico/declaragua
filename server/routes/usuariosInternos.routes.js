@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-
+const cors = require("cors")
 const auth = require('../helpers/autenticar');
 
 const {
@@ -17,17 +17,17 @@ const {
 
 router.post('/login', login).post('/nuevoUsuario', nuevoUsuario);
 
-router.route('/usuarios').get(auth, mostrarClientes);
-router.route('/usuarios/:clienteId').get(auth, mostrarCliente);
-router.route('/usuarios/nuevo').post(auth, agregarCliente);
-router.route('/usuarios/:clienteId').put(auth, modificarCliente);
+router.route('/usuarios').get(cors(), auth, mostrarClientes);
+router.route('/usuarios/:clienteId').get(cors(), auth, mostrarCliente);
+router.route('/usuarios/nuevo').post(cors(), auth, agregarCliente);
+router.route('/usuarios/:clienteId').put(cors(), auth, modificarCliente);
 router
 	.route('/usuarios/agregarNota/:clienteId')
-	.put(auth, agregarNotaAlCliente);
+	.put(cors(), auth, agregarNotaAlCliente);
 router
 	.route('/usuarios/eliminarNota/:notaId')
-	.delete(auth, eliminarNotadelCliente);
-router.route('/usuarios/:clienteId').delete(auth, eliminarCliente);
+	.delete(cors(), auth, eliminarNotadelCliente);
+router.route('/usuarios/:clienteId').delete(cors(), auth, eliminarCliente);
 
 const {
 	mostrarAguas,
@@ -37,12 +37,13 @@ const {
 	borrarAgua,
 } = require('../controllers/agua.controller');
 //usuarios compra-venta de agua
-router.get('/agua', auth, mostrarAguas);
-router.get('/agua/:idAgua', auth, mostrarAgua);
-router.put('/agua/cambiar/:idAgua', auth, cambiarAgua);
-router.post('/agua/crear', auth, nuevaAgua);
-router.delete('/agua/borrar/:idAgua', auth, borrarAgua);
+router.get('/agua',cors(),  auth, mostrarAguas);
+router.get('/agua/:idAgua',cors(),  auth, mostrarAgua);
+router.put('/agua/cambiar/:idAgua',cors(),  auth, cambiarAgua);
+router.post('/agua/crear',cors(),  auth, nuevaAgua);
+router.delete('/agua/borrar/:idAgua',cors(),  auth, borrarAgua);
 
+router.options(cors())
 /**
  * put, patch, delete, get usr/id
  * post usr/create,
