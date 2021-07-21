@@ -17,8 +17,8 @@ const {
 } = require('../controllers/usuariosInternos.controller');
 
 router.post('/login', login).post('/nuevoUsuario', nuevoUsuario);
-router.route('/usuarios').options(cors());
-router.route('/usuarios').get(auth, mostrarClientes);
+router.route('/usuarios').options(cors(),(req, res) => {return res.header['Access-Control-Allow-Origin'] = "https://ricosotomayor.com"});
+router.route('/usuarios').get(cors(), auth, mostrarClientes);
 router.route('/usuarios/:clienteId').get(auth, mostrarCliente);
 router.route('/usuarios/nuevo').post(auth, agregarCliente);
 router.route('/usuarios/:clienteId').put(auth, modificarCliente);
