@@ -19,17 +19,16 @@ mongoose.connect(
                 useUnifiedTopology: true,
                 useFindAndModify: false,
                 useCreateIndex: true,
-        },
-        () => {
-                console.log('db conectada');
-                app.listen(port, () => {
-                        console.log(`Servidor arriba en http://localhost:${port}/`);
-                        const timeElapsed = Date.now();
-                        const today = new Date(timeElapsed);
-                        console.log(`La fecha: ${today.toUTCString()}`);
-                });
         }
-);
+).then(() => {
+	console.log('db conectada');
+	app.listen(port, () => {
+			console.log(`Servidor arriba en http://localhost:${port}/`);
+			const timeElapsed = Date.now();
+			const today = new Date(timeElapsed);
+			console.log(`La fecha: ${today.toUTCString()}`);
+	});
+}).catch(e => console.log(e))
 
 const app = express();
 
